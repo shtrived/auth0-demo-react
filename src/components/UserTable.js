@@ -1,13 +1,12 @@
 import React from 'react';
 import { Button, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import Immutable from 'immutable';
 
 import UserTableRow from './UserTableRow';
 
 class UsersTable extends React.Component {
   static propTypes = {
-    items: PropTypes.instanceOf(Immutable.List).isRequired,
+    items: PropTypes.array.isRequired,
     sortColumn: PropTypes.string.isRequired,
     sortDirection: PropTypes.string.isRequired,
     handleClickReset: PropTypes.func.isRequired,

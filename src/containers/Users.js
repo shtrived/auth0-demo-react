@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import Immutable from 'immutable';
 
 import { loadUsers, resetUsers, sortUsers } from '../actions';
 
@@ -11,7 +10,7 @@ import UserTable from '../components/UserTable';
 class Users extends React.Component {
   static propTypes = {
     error: PropTypes.object,
-    items: PropTypes.instanceOf(Immutable.List).isRequired,
+    items: PropTypes.array.isRequired,
     sortColumn: PropTypes.string.isRequired,
     sortDirection: PropTypes.string.isRequired,
     handleClickReset: PropTypes.func.isRequired,

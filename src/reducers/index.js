@@ -1,5 +1,5 @@
+import _ from 'lodash';
 import { combineReducers } from 'redux';
-import { List } from 'immutable';
 
 import {
   CLEAR_ERROR,
@@ -10,10 +10,12 @@ import {
   SORT_USERS
 } from '../actions';
 
+const EMPTY_ARRAY = [];
+
 const initialState = {
   error: undefined,
   isFetching: false,
-  items: List(),
+  items: EMPTY_ARRAY,
   sortColumn: 'user_id',
   sortDirection: 'ascending'
 };
@@ -52,18 +54,19 @@ function resetUsers(state, action) {
   return {
     ...state,
     isFetching: false,
-    items: action.items
+    items: EMPTY_ARRAY
   };
 }
 
 function sortUsers(state, action) {
-  let sortedItems, sortDirection;
+  let clonedItems, sortedItems, sortDirection;
 
+  clonedItems = _.clone(state.items);
   if (state.sortColumn === action.sortColumn) {
-    sortedItems = state.items.reverse();
+    sortedItems = _.reverse(clonedItems);
     sortDirection = invertDirection(state.sortDirection);
   } else {
-    sortedItems = state.items.sortBy(item => item[action.sortColumn]);
+    sortedItems = _.sortBy(clonedItems, [action.sortColumn]);
     sortDirection = 'ascending';
   }
 

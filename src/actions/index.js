@@ -1,5 +1,3 @@
-import { List } from 'immutable';
-
 import WebApiService from '../services/WebApiService';
 
 export const CLEAR_ERROR = 'CLEAR_ERROR';
@@ -25,7 +23,7 @@ function loadUsersRequest() {
 function loadUsersSuccess(response) {
   return {
     type: LOAD_USERS_SUCCESS,
-    items: List(response.data)
+    items: response.data
   };
 }
 
@@ -52,8 +50,7 @@ export function resetUsers() {
   return function(dispatch) {
     dispatch(clearError());
     dispatch({
-      type: RESET_USERS,
-      items: List()
+      type: RESET_USERS
     });
   };
 }
