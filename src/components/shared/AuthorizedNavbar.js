@@ -11,7 +11,7 @@ function AuthorizedNavbar({ handleLogout }) {
   return (
     <React.Fragment>
       <Menu.Item as={NavLink} to="/app">
-        <Icon name="user" /> Users
+        Clients
       </Menu.Item>
       <Menu.Item onClick={handleLogout} position="right">
         <Icon name="sign out" /> Log out

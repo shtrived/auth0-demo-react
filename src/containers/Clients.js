@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 import { Container, Icon, Message } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-import { loadUsers, resetUsers, sortUsers } from '../actions';
+import { loadClients, resetClients, sortClients } from '../actions';
 
-import UserTable from '../components/UserTable';
+import ClientTable from '../components/ClientTable';
 
-class Users extends React.Component {
+class Clients extends React.Component {
   static propTypes = {
     error: PropTypes.object,
     items: PropTypes.array.isRequired,
     sortColumn: PropTypes.string.isRequired,
     sortDirection: PropTypes.string.isRequired,
     handleClickReset: PropTypes.func.isRequired,
-    handleClickUsers: PropTypes.func.isRequired,
-    handleResetUsers: PropTypes.func.isRequired,
+    handleClickClients: PropTypes.func.isRequired,
+    handleResetClients: PropTypes.func.isRequired,
     handleSort: PropTypes.func.isRequired
   };
 
   componentWillMount() {
-    this.props.handleResetUsers();
+    this.props.handleResetClients();
   }
 
   render() {
@@ -30,7 +30,7 @@ class Users extends React.Component {
       sortColumn,
       sortDirection,
       handleClickReset,
-      handleClickUsers,
+      handleClickClients,
       handleSort
     } = this.props;
     return (
@@ -40,16 +40,16 @@ class Users extends React.Component {
             <Icon name="warning circle" />
             <Message.Content>
               <Message.Header>{error.message}</Message.Header>
-              <pre>{error.stack}</pre>
+              <p>{error.response.data.message}</p>
             </Message.Content>
           </Message>
         )}
-        <UserTable
+        <ClientTable
           items={items}
           sortColumn={sortColumn}
           sortDirection={sortDirection}
           handleClickReset={handleClickReset}
-          handleClickUsers={handleClickUsers}
+          handleClickClients={handleClickClients}
           handleSort={handleSort}
         />
       </Container>
@@ -58,30 +58,30 @@ class Users extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  error: state.users.error,
-  items: state.users.items,
-  sortColumn: state.users.sortColumn,
-  sortDirection: state.users.sortDirection
+  error: state.clients.error,
+  items: state.clients.items,
+  sortColumn: state.clients.sortColumn,
+  sortDirection: state.clients.sortDirection
 });
 
 const mapDispatchToProps = dispatch => ({
   handleClickReset: e => {
     e.preventDefault();
-    dispatch(resetUsers());
+    dispatch(resetClients());
   },
-  handleClickUsers: e => {
+  handleClickClients: e => {
     e.preventDefault();
-    dispatch(loadUsers());
+    dispatch(loadClients());
   },
-  handleResetUsers: () => {
-    dispatch(resetUsers());
+  handleResetClients: () => {
+    dispatch(resetClients());
   },
   handleSort: clickedColumn => {
-    dispatch(sortUsers(clickedColumn));
+    dispatch(sortClients(clickedColumn));
   }
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Users);
+)(Clients);

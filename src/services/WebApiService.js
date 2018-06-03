@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import axios from 'axios';
 
 import authorizationService from './AuthorizationService';
@@ -14,12 +15,12 @@ class WebApiService {
     });
   }
 
-  getMessage() {
-    return this.axios.get('/api/message');
-  }
-
-  getUsers() {
-    return this.axios.get('/api/users');
+  getClients(fields) {
+    return this.axios.get('/api/clients', {
+      params: {
+        fields: _.join(fields, ',')
+      }
+    });
   }
 }
 

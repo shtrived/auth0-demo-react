@@ -2,15 +2,15 @@ import React from 'react';
 import { Button, Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-import UserTableRow from './UserTableRow';
+import ClientTableRow from './ClientTableRow';
 
-class UsersTable extends React.Component {
+class ClientTable extends React.Component {
   static propTypes = {
     items: PropTypes.array.isRequired,
     sortColumn: PropTypes.string.isRequired,
     sortDirection: PropTypes.string.isRequired,
     handleClickReset: PropTypes.func.isRequired,
-    handleClickUsers: PropTypes.func.isRequired,
+    handleClickClients: PropTypes.func.isRequired,
     handleSort: PropTypes.func.isRequired
   };
 
@@ -20,16 +20,16 @@ class UsersTable extends React.Component {
       sortColumn,
       sortDirection,
       handleClickReset,
-      handleClickUsers,
+      handleClickClients,
       handleSort
     } = this.props;
     return (
       <React.Fragment>
         <Button
-          content="Get Users"
-          icon="user"
+          content="Get Clients"
+          icon="window restore"
           labelPosition="left"
-          onClick={handleClickUsers}
+          onClick={handleClickClients}
           primary
         />
         <Button content="Reset" onClick={handleClickReset} />
@@ -37,33 +37,29 @@ class UsersTable extends React.Component {
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell
-                sorted={sortColumn === 'user_id' ? sortDirection : null}
-                onClick={() => handleSort('user_id')}
-              >
-                User Id
-              </Table.HeaderCell>
-              <Table.HeaderCell
-                sorted={sortColumn === 'email' ? sortDirection : null}
-                onClick={() => handleSort('email')}
-              >
-                Email
-              </Table.HeaderCell>
-              <Table.HeaderCell
                 sorted={sortColumn === 'name' ? sortDirection : null}
                 onClick={() => handleSort('name')}
               >
                 Name
               </Table.HeaderCell>
               <Table.HeaderCell
-                sorted={sortColumn === 'logins_count' ? sortDirection : null}
-                onClick={() => handleSort('logins_count')}
+                sorted={sortColumn === 'description' ? sortDirection : null}
+                onClick={() => handleSort('description')}
               >
-                Logins Count
+                Description
+              </Table.HeaderCell>
+              <Table.HeaderCell
+                sorted={sortColumn === 'client_id' ? sortDirection : null}
+                onClick={() => handleSort('client_id')}
+              >
+                Client ID
               </Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {items.map(item => <UserTableRow key={item.user_id} {...item} />)}
+            {items.map(item => (
+              <ClientTableRow key={item.client_id} {...item} />
+            ))}
           </Table.Body>
         </Table>
       </React.Fragment>
@@ -71,4 +67,4 @@ class UsersTable extends React.Component {
   }
 }
 
-export default UsersTable;
+export default ClientTable;

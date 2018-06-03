@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const express = require('express');
 const axios = require('axios');
 const jwt = require('express-jwt');
@@ -39,10 +40,10 @@ const checkJwt = jwt({
 
 const checkScopes = jwtAuthz(['read:users']);
 
-app.get('/api/users', checkJwt, checkScopes, function(req, res, next) {
+app.get('/api/clients', checkJwt, checkScopes, function(req, res, next) {
   managementApi
-    .getUsers()
-    .then(response => res.json(response.data))
+    .getClients(req.query)
+    .then(resp => res.json(resp))
     .catch(next);
 });
 

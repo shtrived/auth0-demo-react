@@ -1,12 +1,14 @@
 'use strict';
 
+const _ = require('lodash');
+
 /**
  * Module exports.
  * @public
  */
 
 module.exports.config = config;
-module.exports.getUsers = getUsers;
+module.exports.getClients = getClients;
 
 /**
  * Module dependencies.
@@ -60,12 +62,16 @@ function getAccessToken() {
 }
 
 /**
- * Gets a list of users.
+ * Gets a list of clients.
  */
 
-function getUsers() {
-  const url = '/users';
-  return axiosSecure.get(url);
+function getClients(query) {
+  const url = '/clients';
+  return axiosSecure
+    .get(url, {
+      params: query
+    })
+    .then(resp => normalizeClients(resp.data));
 }
 
 function handleError(err) {
@@ -82,4 +88,13 @@ function handleError(err) {
     // Something happened in setting up the request that triggered an Error
     console.log('Error', err.message);
   }
+}
+
+function normalizeClients(clients) {
+  _.forEach(clients, function(client) {
+    if (!client.description) {
+      client.description = '';
+    }
+  });
+  return clients;
 }

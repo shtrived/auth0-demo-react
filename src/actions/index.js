@@ -1,28 +1,28 @@
 import WebApiService from '../services/WebApiService';
 
 export const CLEAR_ERROR = 'CLEAR_ERROR';
-export const LOAD_USERS_FAILURE = 'LOAD_USERS_FAILURE';
-export const LOAD_USERS_REQUEST = 'LOAD_USERS_REQUEST';
-export const LOAD_USERS_SUCCESS = 'LOAD_USERS_SUCCESS';
-export const RESET_USERS = 'RESET_USERS';
-export const SORT_USERS = 'SORT_USERS';
+export const LOAD_CLIENTS_FAILURE = 'LOAD_CLIENTS_FAILURE';
+export const LOAD_CLIENTS_REQUEST = 'LOAD_CLIENTS_REQUEST';
+export const LOAD_CLIENTS_SUCCESS = 'LOAD_CLIENTS_SUCCESS';
+export const RESET_CLIENTS = 'RESET_CLIENTS';
+export const SORT_CLIENTS = 'SORT_CLIENTS';
 
-function loadUsersFailure(error) {
+function loadClientsFailure(error) {
   return {
-    type: LOAD_USERS_FAILURE,
+    type: LOAD_CLIENTS_FAILURE,
     error
   };
 }
 
-function loadUsersRequest() {
+function loadClientsRequest() {
   return {
-    type: LOAD_USERS_REQUEST
+    type: LOAD_CLIENTS_REQUEST
   };
 }
 
-function loadUsersSuccess(response) {
+function loadClientsSuccess(response) {
   return {
-    type: LOAD_USERS_SUCCESS,
+    type: LOAD_CLIENTS_SUCCESS,
     items: response.data
   };
 }
@@ -33,33 +33,34 @@ export function clearError() {
   };
 }
 
-export function loadUsers() {
+export function loadClients() {
+  let fields = ['app_type', 'client_id', 'description', 'name'];
   return function(dispatch) {
     dispatch(clearError());
-    dispatch(loadUsersRequest());
+    dispatch(loadClientsRequest());
     new WebApiService()
-      .getUsers()
+      .getClients(fields)
       .then(
-        response => dispatch(loadUsersSuccess(response)),
-        error => dispatch(loadUsersFailure(error))
+        response => dispatch(loadClientsSuccess(response)),
+        error => dispatch(loadClientsFailure(error))
       );
   };
 }
 
-export function resetUsers() {
+export function resetClients() {
   return function(dispatch) {
     dispatch(clearError());
     dispatch({
-      type: RESET_USERS
+      type: RESET_CLIENTS
     });
   };
 }
 
-export function sortUsers(sortColumn) {
+export function sortClients(sortColumn) {
   return function(dispatch) {
     dispatch(clearError());
     dispatch({
-      type: SORT_USERS,
+      type: SORT_CLIENTS,
       sortColumn: sortColumn
     });
   };

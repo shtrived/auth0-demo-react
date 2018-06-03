@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-import Users from '../../containers/Users';
+import Clients from '../../containers/Clients';
 
 import Navbar from './Navbar';
 
@@ -16,7 +16,7 @@ function AuthorizedLayout({ match }) {
     <React.Fragment>
       <Navbar private />
       <Container>
-        <Route path={`${match.path}`} component={Users} exact />
+        <Route path={`${match.path}`} component={Clients} exact />
       </Container>
     </React.Fragment>
   );
