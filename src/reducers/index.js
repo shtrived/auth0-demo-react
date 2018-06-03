@@ -61,6 +61,7 @@ function resetUsers(state, action) {
 function sortUsers(state, action) {
   let clonedItems, sortedItems, sortDirection;
 
+  // clone to avoid mutating state via reverse, sort
   clonedItems = _.clone(state.items);
   if (state.sortColumn === action.sortColumn) {
     sortedItems = _.reverse(clonedItems);
