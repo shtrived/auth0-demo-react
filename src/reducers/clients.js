@@ -43,11 +43,13 @@ function loadClientsRequest(state, action) {
 
 function loadClientsSuccess(state, action) {
   const sortColumn = 'name';
-
+  const sortDirection = 'ascending';
   return {
     ...state,
     isFetching: false,
-    items: _.sortBy(action.items, [sortColumn])
+    items: _.sortBy(action.items, [sortColumn]),
+    sortColumn: sortColumn,
+    sortDirection: sortDirection
   };
 }
 

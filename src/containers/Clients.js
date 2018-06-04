@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Icon, Message } from 'semantic-ui-react';
+import { Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import { loadClients, resetClients, sortClients } from '../actions';
 
 import ClientTable from '../components/ClientTable';
+import ErrorMessage from '../components/shared/ErrorMessage';
 
 class Clients extends React.Component {
   static propTypes = {
@@ -35,15 +36,7 @@ class Clients extends React.Component {
     } = this.props;
     return (
       <Container style={{ marginTop: '7em' }}>
-        {error && (
-          <Message icon error>
-            <Icon name="warning circle" />
-            <Message.Content>
-              <Message.Header>{error.message}</Message.Header>
-              <p>{error.response.data.message}</p>
-            </Message.Content>
-          </Message>
-        )}
+        <ErrorMessage error={error} />
         <ClientTable
           items={items}
           sortColumn={sortColumn}

@@ -17,32 +17,34 @@ module.exports.getClients = getClients;
 
 const axios = require('axios');
 const dotenv = require('dotenv');
+dotenv.config();
 
 let axiosSecure;
-
-dotenv.config();
 
 /**
  * Configure by acquiring an access token.
  */
 
-function config() {
-  getAccessToken()
-    .then(resp => {
-      console.log(resp.data.access_token);
-      axiosSecure = axios.create({
-        baseURL: `https://${process.env.AUTH0_DOMAIN}/api/v2`,
-        headers: { Authorization: 'Bearer ' + resp.data.access_token }
-      });
-    })
-    .catch(handleError);
+async function config() {
+  try {
+    const resp = await getAccessToken();
+
+    console.log(resp.data.access_token);
+
+    axiosSecure = axios.create({
+      baseURL: `https://${process.env.AUTH0_DOMAIN}/api/v2`,
+      headers: { Authorization: 'Bearer ' + resp.data.access_token }
+    });
+  } catch (err) {
+    handleError(err);
+  }
 }
 
 /**
  * Acquires an access token.
  */
 
-function getAccessToken() {
+async function getAccessToken() {
   const url = `https://${process.env.AUTH0_DOMAIN}/oauth/token`;
 
   const data = {
@@ -65,13 +67,23 @@ function getAccessToken() {
  * Gets a list of clients.
  */
 
-function getClients(query) {
+async function getClients(query) {
   const url = '/clients';
-  return axiosSecure
-    .get(url, {
-      params: query
-    })
-    .then(resp => normalizeClients(resp.data));
+
+  const config = {
+    params: query,
+    transformResponse: axios.defaults.transformResponse.concat(normalizeClients)
+  };
+
+  const resp = await axiosSecure.get(url, config);
+  return resp.data;
+
+  function normalizeClients(collection) {
+    _.forEach(collection, value => {
+      !value.description && (value.description = '');
+    });
+    return collection;
+  }
 }
 
 function handleError(err) {
@@ -88,13 +100,4 @@ function handleError(err) {
     // Something happened in setting up the request that triggered an Error
     console.log('Error', err.message);
   }
-}
-
-function normalizeClients(clients) {
-  _.forEach(clients, function(client) {
-    if (!client.description) {
-      client.description = '';
-    }
-  });
-  return clients;
 }

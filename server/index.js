@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const express = require('express');
 const axios = require('axios');
 const jwt = require('express-jwt');
@@ -14,13 +13,6 @@ require('dotenv').config();
 if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
   throw 'Make sure you have AUTH0_DOMAIN, and AUTH0_AUDIENCE in your .env file';
 }
-
-managementApi.config();
-
-const app = express();
-
-app.use(cors());
-app.use(morgan('dev'));
 
 const checkJwt = jwt({
   // Dynamically provide a signing key based on the kid in the
@@ -38,17 +30,27 @@ const checkJwt = jwt({
   algorithms: ['RS256']
 });
 
-const checkScopes = jwtAuthz(['read:users']);
+const checkScopes = jwtAuthz(['read:clients']);
 
-app.get('/api/clients', checkJwt, checkScopes, function(req, res, next) {
-  managementApi
-    .getClients(req.query)
-    .then(resp => res.json(resp))
-    .catch(next);
+managementApi.config();
+
+const app = express();
+app.use(cors());
+app.use(morgan('dev'));
+app.use(checkJwt);
+
+app.get('/api/clients', checkScopes, async (req, res, next) => {
+  try {
+    const clients = await managementApi.getClients(req.query);
+    res.json(clients);
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use(errorHandler);
 
 const port = 3001;
 app.listen(port);
+
 console.log(`Server listening on http://localhost:${port}.`);

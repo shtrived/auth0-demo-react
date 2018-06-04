@@ -12,7 +12,7 @@ class AuthorizationService {
       redirectUri: AUTH_CONFIG.callbackUrl,
       audience: AUTH_CONFIG.apiAudience,
       responseType: 'token id_token',
-      scope: 'openid profile email read:users write:users'
+      scope: 'openid profile email read:clients write:clients'
     });
     this.tokenRenewalTimeoutId = 0;
   }

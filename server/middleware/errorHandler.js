@@ -23,6 +23,6 @@ function handleError(err, req, res, next) {
     res.status(500).send(err.request);
   } else {
     // Something happened in setting up the request that triggered an Error
-    res.status(500).send(err.message);
+    res.status(500).send({ message: err.message });
   }
 }
