@@ -15,7 +15,7 @@ function ClientTableRow(props) {
     <Table.Row key={client_id.toString()}>
       <Table.Cell>
         <Header as="h4">
-          <Icon name="window restore" size="mini" />
+          <Icon name="window maximize outline" size="mini" />
           <Header.Content>
             {name}
             <Header.Subheader>{app_type}</Header.Subheader>

@@ -27,13 +27,13 @@ class ClientTable extends React.Component {
       <React.Fragment>
         <Button
           content="Get Clients"
-          icon="window restore"
+          icon="window restore outline"
           labelPosition="left"
           onClick={handleClickClients}
           primary
         />
         <Button content="Reset" onClick={handleClickReset} />
-        <Table celled sortable>
+        <Table basic="very" sortable>
           <Table.Header fullWidth>
             <Table.Row>
               <Table.HeaderCell
