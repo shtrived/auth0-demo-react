@@ -1,5 +1,7 @@
 import _ from 'lodash';
 
+import { EMPTY_ARRAY, INITIAL_STATE, SORT_DIRECTION } from '../constants';
+
 import {
   CLEAR_ERROR,
   LOAD_CLIENTS_FAILURE,
@@ -8,21 +10,6 @@ import {
   RESET_CLIENTS,
   SORT_CLIENTS
 } from '../actions';
-
-const EMPTY_ARRAY = Object.freeze([]);
-
-const SORT_DIRECTION = Object.freeze({
-  ASC: 'ascending',
-  DESC: 'descending'
-});
-
-const INITIAL_STATE = Object.freeze({
-  error: undefined,
-  isFetching: false,
-  items: EMPTY_ARRAY,
-  sortColumn: 'name',
-  sortDirection: SORT_DIRECTION.ASC
-});
 
 function clearError(state, action) {
   return {
