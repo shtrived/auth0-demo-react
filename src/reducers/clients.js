@@ -9,15 +9,20 @@ import {
   SORT_CLIENTS
 } from '../actions';
 
-const EMPTY_ARRAY = [];
+const EMPTY_ARRAY = Object.freeze([]);
 
-const initialState = {
+const SORT_DIRECTION = Object.freeze({
+  ASC: 'ascending',
+  DESC: 'descending'
+});
+
+const INITIAL_STATE = Object.freeze({
   error: undefined,
   isFetching: false,
   items: EMPTY_ARRAY,
   sortColumn: 'name',
-  sortDirection: 'ascending'
-};
+  sortDirection: SORT_DIRECTION.ASC
+});
 
 function clearError(state, action) {
   return {
@@ -43,13 +48,12 @@ function loadClientsRequest(state, action) {
 
 function loadClientsSuccess(state, action) {
   const sortColumn = 'name';
-  const sortDirection = 'ascending';
   return {
     ...state,
     isFetching: false,
     items: _.sortBy(action.items, [sortColumn]),
     sortColumn: sortColumn,
-    sortDirection: sortDirection
+    sortDirection: SORT_DIRECTION.ASC
   };
 }
 
@@ -71,7 +75,7 @@ function sortClients(state, action) {
     sortDirection = invertDirection(state.sortDirection);
   } else {
     sortedItems = _.sortBy(clonedItems, [action.sortColumn]);
-    sortDirection = 'ascending';
+    sortDirection = SORT_DIRECTION.ASC;
   }
 
   return {
@@ -83,11 +87,13 @@ function sortClients(state, action) {
   };
 
   function invertDirection(sortDirection) {
-    return sortDirection === 'ascending' ? 'descending' : 'ascending';
+    return sortDirection === SORT_DIRECTION.ASC
+      ? SORT_DIRECTION.DESC
+      : SORT_DIRECTION.ASC;
   }
 }
 
-function clients(state = initialState, action) {
+function clients(state = INITIAL_STATE, action) {
   switch (action.type) {
     case CLEAR_ERROR:
       return clearError(state, action);
