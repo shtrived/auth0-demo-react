@@ -9,6 +9,8 @@ const _ = require('lodash');
 
 module.exports.config = config;
 module.exports.getClients = getClients;
+module.exports.postTicketEmailVerification = postTicketEmailVerification;
+module.exports.postTicketPasswordChange = postTicketPasswordChange;
 
 /**
  * Module dependencies.
@@ -84,6 +86,32 @@ async function getClients(query) {
     });
     return collection;
   }
+}
+
+/**
+ * Create a ticket to verify user's email.
+ */
+
+async function postTicketEmailVerification(body) {
+  const url = '/tickets/email-verification';
+
+  const data = body;
+
+  const resp = await axiosSecure.post(url, data);
+  return resp.data;
+}
+
+/**
+ * Create a password change ticket for a user.
+ */
+
+async function postTicketPasswordChange(body) {
+  const url = '/tickets/password-change';
+
+  const data = body;
+
+  const resp = await axiosSecure.post(url, data);
+  return resp.data;
 }
 
 function handleError(err) {
