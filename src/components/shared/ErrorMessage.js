@@ -4,7 +4,7 @@ import { Icon, Message } from 'semantic-ui-react';
 
 class ErrorMessage extends React.Component {
   static propTypes = {
-    error: PropTypes.object
+    error: PropTypes.object,
   };
 
   render() {

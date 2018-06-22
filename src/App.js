@@ -25,7 +25,7 @@ const App = ({ store }) => (
 );
 
 App.propTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
 };
 
 export default App;

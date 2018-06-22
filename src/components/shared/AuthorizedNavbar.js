@@ -4,7 +4,7 @@ import { Icon, Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  handleLogout: PropTypes.func
+  handleLogout: PropTypes.func,
 };
 
 function AuthorizedNavbar({ handleLogout }) {

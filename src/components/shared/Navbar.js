@@ -11,7 +11,7 @@ import logo from '../../images/logo.svg';
 
 class Navbar extends React.Component {
   static propTypes = {
-    private: PropTypes.bool
+    private: PropTypes.bool,
   };
 
   handleLogin() {

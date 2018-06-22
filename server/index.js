@@ -48,11 +48,11 @@ function createCheckJwt() {
       cache: true,
       rateLimit: true,
       jwksRequestsPerMinute: 5,
-      jwksUri: jwksUri
+      jwksUri: jwksUri,
     }),
     // Validate the audience and the issuer
     audience: process.env.AUTH0_AUDIENCE,
     issuer: issuer,
-    algorithms: ['RS256']
+    algorithms: ['RS256'],
   });
 }

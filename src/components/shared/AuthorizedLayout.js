@@ -8,7 +8,7 @@ import Clients from '../../containers/Clients';
 import Navbar from './Navbar';
 
 const propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
 };
 
 function AuthorizedLayout({ match }) {

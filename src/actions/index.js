@@ -10,26 +10,26 @@ export const SORT_CLIENTS = 'SORT_CLIENTS';
 function loadClientsFailure(error) {
   return {
     type: LOAD_CLIENTS_FAILURE,
-    error
+    error,
   };
 }
 
 function loadClientsRequest() {
   return {
-    type: LOAD_CLIENTS_REQUEST
+    type: LOAD_CLIENTS_REQUEST,
   };
 }
 
 function loadClientsSuccess(response) {
   return {
     type: LOAD_CLIENTS_SUCCESS,
-    items: response.data
+    items: response.data,
   };
 }
 
 export function clearError() {
   return {
-    type: CLEAR_ERROR
+    type: CLEAR_ERROR,
   };
 }
 
@@ -51,7 +51,7 @@ export function resetClients() {
   return function(dispatch) {
     dispatch(clearError());
     dispatch({
-      type: RESET_CLIENTS
+      type: RESET_CLIENTS,
     });
   };
 }
@@ -61,7 +61,7 @@ export function sortClients(sortColumn) {
     dispatch(clearError());
     dispatch({
       type: SORT_CLIENTS,
-      sortColumn: sortColumn
+      sortColumn: sortColumn,
     });
   };
 }

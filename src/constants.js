@@ -2,7 +2,7 @@ export const EMPTY_ARRAY = Object.freeze([]);
 
 export const SORT_DIRECTION = Object.freeze({
   ASC: 'ascending',
-  DESC: 'descending'
+  DESC: 'descending',
 });
 
 export const INITIAL_STATE = Object.freeze({
@@ -10,5 +10,5 @@ export const INITIAL_STATE = Object.freeze({
   isFetching: false,
   items: EMPTY_ARRAY,
   sortColumn: 'name',
-  sortDirection: SORT_DIRECTION.ASC
+  sortDirection: SORT_DIRECTION.ASC,
 });

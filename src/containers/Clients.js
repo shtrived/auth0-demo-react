@@ -17,7 +17,7 @@ class Clients extends React.Component {
     handleClickReset: PropTypes.func.isRequired,
     handleClickClients: PropTypes.func.isRequired,
     handleResetClients: PropTypes.func.isRequired,
-    handleSort: PropTypes.func.isRequired
+    handleSort: PropTypes.func.isRequired,
   };
 
   componentWillMount() {
@@ -32,7 +32,7 @@ class Clients extends React.Component {
       sortDirection,
       handleClickReset,
       handleClickClients,
-      handleSort
+      handleSort,
     } = this.props;
     return (
       <Container style={{ marginTop: '7em' }}>
@@ -54,7 +54,7 @@ const mapStateToProps = state => ({
   error: state.clients.error,
   items: state.clients.items,
   sortColumn: state.clients.sortColumn,
-  sortDirection: state.clients.sortDirection
+  sortDirection: state.clients.sortDirection,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -71,7 +71,7 @@ const mapDispatchToProps = dispatch => ({
   },
   handleSort: clickedColumn => {
     dispatch(sortClients(clickedColumn));
-  }
+  },
 });
 
 export default connect(

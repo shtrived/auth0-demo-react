@@ -11,7 +11,7 @@ class ClientTable extends React.Component {
     sortDirection: PropTypes.string.isRequired,
     handleClickReset: PropTypes.func.isRequired,
     handleClickClients: PropTypes.func.isRequired,
-    handleSort: PropTypes.func.isRequired
+    handleSort: PropTypes.func.isRequired,
   };
 
   render() {
@@ -21,7 +21,7 @@ class ClientTable extends React.Component {
       sortDirection,
       handleClickReset,
       handleClickClients,
-      handleSort
+      handleSort,
     } = this.props;
     return (
       <React.Fragment>

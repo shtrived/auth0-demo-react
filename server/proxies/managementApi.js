@@ -35,7 +35,7 @@ async function config() {
 
     axiosSecure = axios.create({
       baseURL: `https://${process.env.AUTH0_DOMAIN}/api/v2`,
-      headers: { Authorization: 'Bearer ' + resp.data.access_token }
+      headers: { Authorization: 'Bearer ' + resp.data.access_token },
     });
   } catch (err) {
     handleError(err);
@@ -53,13 +53,13 @@ async function getAccessToken() {
     audience: `https://${process.env.AUTH0_DOMAIN}/api/v2/`,
     grant_type: 'client_credentials',
     client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET
+    client_secret: process.env.CLIENT_SECRET,
   };
 
   const config = {
     headers: {
-      'content-type': 'application/json'
-    }
+      'content-type': 'application/json',
+    },
   };
 
   return axios.post(url, data, config);
@@ -74,7 +74,9 @@ async function getClients(query) {
 
   const config = {
     params: query,
-    transformResponse: axios.defaults.transformResponse.concat(normalizeClients)
+    transformResponse: axios.defaults.transformResponse.concat(
+      normalizeClients
+    ),
   };
 
   const resp = await axiosSecure.get(url, config);

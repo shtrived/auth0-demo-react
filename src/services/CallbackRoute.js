@@ -6,7 +6,7 @@ import authorizationService from './AuthorizationService';
 
 class CallbackRoute extends React.Component {
   static propTypes = {
-    component: PropTypes.any
+    component: PropTypes.any,
   };
 
   handleAuthentication(props) {

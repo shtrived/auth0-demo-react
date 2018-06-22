@@ -4,7 +4,7 @@ import { Icon, Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
-  handleLogin: PropTypes.func
+  handleLogin: PropTypes.func,
 };
 
 function PublicNavbar({ handleLogin }) {

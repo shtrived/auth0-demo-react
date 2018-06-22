@@ -8,13 +8,13 @@ import {
   LOAD_CLIENTS_REQUEST,
   LOAD_CLIENTS_SUCCESS,
   RESET_CLIENTS,
-  SORT_CLIENTS
+  SORT_CLIENTS,
 } from '../actions';
 
 function clearError(state, action) {
   return {
     ...state,
-    error: undefined
+    error: undefined,
   };
 }
 
@@ -22,14 +22,14 @@ function loadClientsFailure(state, action) {
   return {
     ...state,
     error: action.error,
-    isFetching: false
+    isFetching: false,
   };
 }
 
 function loadClientsRequest(state, action) {
   return {
     ...state,
-    isFetching: true
+    isFetching: true,
   };
 }
 
@@ -40,7 +40,7 @@ function loadClientsSuccess(state, action) {
     isFetching: false,
     items: _.sortBy(action.items, [sortColumn]),
     sortColumn: sortColumn,
-    sortDirection: SORT_DIRECTION.ASC
+    sortDirection: SORT_DIRECTION.ASC,
   };
 }
 
@@ -48,7 +48,7 @@ function resetClients(state, action) {
   return {
     ...state,
     isFetching: false,
-    items: EMPTY_ARRAY
+    items: EMPTY_ARRAY,
   };
 }
 
@@ -70,7 +70,7 @@ function sortClients(state, action) {
     isFetching: false,
     items: sortedItems,
     sortColumn: action.sortColumn,
-    sortDirection: sortDirection
+    sortDirection: sortDirection,
   };
 
   function invertDirection(sortDirection) {
