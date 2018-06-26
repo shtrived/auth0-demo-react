@@ -1,5 +1,5 @@
 {
-  "editor.codeLens": false,
+  "editor.codeLens": true,
   "editor.detectIndentation": false,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
