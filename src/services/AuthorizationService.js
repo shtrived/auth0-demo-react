@@ -7,12 +7,12 @@ import { AUTH_CONFIG } from './auth-variables';
 class AuthorizationService {
   constructor() {
     this.auth0 = new auth0.WebAuth({
-      domain: AUTH_CONFIG.domain,
+      domain: AUTH_CONFIG.domainAlias,
       clientID: AUTH_CONFIG.clientId,
       redirectUri: AUTH_CONFIG.callbackUrl,
       audience: AUTH_CONFIG.apiAudience,
       responseType: 'token id_token',
-      scope: 'openid profile email read:clients write:clients'
+      scope: 'openid profile email',
     });
     this.tokenRenewalTimeoutId = 0;
   }

@@ -14,7 +14,7 @@ if (!process.env.AUTH0_DOMAIN || !process.env.AUTH0_AUDIENCE) {
 }
 
 const checkJwt = createCheckJwt();
-const checkScopes = jwtAuthz(['read:clients']);
+const checkScopes = jwtAuthz(['read:users']);
 
 const app = express();
 
@@ -39,7 +39,7 @@ console.log(`Server listening on http://localhost:${port}.`);
 
 function createCheckJwt() {
   const jwksUri = `https://${process.env.AUTH0_DOMAIN}/.well-known/jwks.json`;
-  const issuer = `https://${process.env.AUTH0_DOMAIN}/`;
+  const issuer = `https://${process.env.AUTH0_DOMAIN_ALIAS}/`;
 
   return jwt({
     // Dynamically provide a signing key based on the kid in the
