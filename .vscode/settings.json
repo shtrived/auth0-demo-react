@@ -6,9 +6,10 @@
   "editor.minimap.enabled": false,
   "editor.tabSize": 2,
   "editor.wordWrap": "off",
+  "eslint.autoFixOnSave": true,
   "files.hotExit": "off",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "html.format.wrapLineLength": 0,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
 }
