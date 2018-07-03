@@ -54,7 +54,9 @@ class AuthorizationService {
   }
 
   login() {
-    this.webAuth.authorize();
+    this.webAuth.authorize({
+      doaminAlias: AUTH_CONFIG.domainAlias,
+    });
   }
 
   logout() {
