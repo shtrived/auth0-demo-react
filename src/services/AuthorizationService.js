@@ -6,7 +6,7 @@ import { AUTH_CONFIG } from './auth-variables';
 
 class AuthorizationService {
   constructor() {
-    this.auth0 = new auth0.WebAuth({
+    this.webAuth = new auth0.WebAuth({
       domain: AUTH_CONFIG.domainAlias,
       clientID: AUTH_CONFIG.clientId,
       redirectUri: AUTH_CONFIG.callbackUrl,
@@ -27,13 +27,13 @@ class AuthorizationService {
 
   getProfile(cb) {
     const accessToken = this.getAccessToken();
-    this.auth0.client.userInfo(accessToken, (err, profile) => {
+    this.webAuth.client.userInfo(accessToken, (err, profile) => {
       cb(err, profile);
     });
   }
 
   handleAuthentication() {
-    this.auth0.parseHash((err, result) => {
+    this.webAuth.parseHash((err, result) => {
       if (result && result.accessToken && result.idToken) {
         this.setSession(result);
         history.replace('/app');
@@ -54,7 +54,7 @@ class AuthorizationService {
   }
 
   login() {
-    this.auth0.authorize();
+    this.webAuth.authorize();
   }
 
   logout() {
@@ -66,7 +66,7 @@ class AuthorizationService {
   }
 
   renewToken() {
-    this.auth0.checkSession({}, (err, result) => {
+    this.webAuth.checkSession({}, (err, result) => {
       if (err) {
         console.log(
           `Could not get a new token (${err.error}: ${err.error_description}).`
