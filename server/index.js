@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const errorHandler = require('./middleware/errorHandler');
 const mgtApi = require('./routes/managementApi');
+const logger = require('./utilities/logger');
 
 require('dotenv').config();
 
@@ -19,7 +20,7 @@ const checkScopes = jwtAuthz(['read:users']);
 const app = express();
 
 app.use(cors());
-app.use(morgan('dev'));
+app.use(morgan('dev', { stream: logger.stream }));
 
 app.use(checkJwt);
 app.use(checkScopes);
