@@ -31,8 +31,6 @@ async function config() {
   try {
     const resp = await getAccessToken();
 
-    console.log(resp.data.access_token);
-
     axiosSecure = axios.create({
       baseURL: `https://${process.env.AUTH0_DOMAIN}/api/v2`,
       headers: { Authorization: 'Bearer ' + resp.data.access_token },
