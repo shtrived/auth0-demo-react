@@ -1,5 +1,5 @@
 {
-  "editor.codeLens": true,
+  "editor.codeLens": false,
   "editor.detectIndentation": false,
   "editor.formatOnSave": true,
   "editor.insertSpaces": true,
@@ -11,5 +11,5 @@
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
   "html.format.wrapLineLength": 0,
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
