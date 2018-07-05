@@ -1,4 +1,4 @@
-const managementApi = require('../proxies/managementApi');
+const managementApi = require('../services/managementApi');
 managementApi.config();
 
 exports.getClients = async (req, res, next) => {
