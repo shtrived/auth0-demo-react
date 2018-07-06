@@ -10,6 +10,5 @@
   "files.hotExit": "off",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "html.format.wrapLineLength": 0,
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "html.format.wrapLineLength": 0
 }
