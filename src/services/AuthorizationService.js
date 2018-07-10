@@ -55,6 +55,11 @@ class AuthorizationService {
 
   login() {
     this.webAuth.authorize({
+      // mode: 'signUp',
+      // prefill: {
+      //   email: 'rdahbura@gmail.com',
+      //   username: 'rdahbura@gmail.com',
+      // },
       doaminAlias: AUTH_CONFIG.domainAlias,
     });
   }
