@@ -55,21 +55,24 @@ class AuthorizationService {
 
   login() {
     this.webAuth.authorize({
-      // mode: 'signUp',
-      // prefill: {
-      //   email: 'rdahbura@gmail.com',
-      //   username: 'rdahbura@gmail.com',
-      // },
       doaminAlias: AUTH_CONFIG.domainAlias,
     });
   }
 
   logout() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
+    this.clearSession();
     clearTimeout(this.tokenRenewalTimeoutId);
     history.replace('/');
+  }
+
+  logoutFederated() {
+    this.clearSession();
+    clearTimeout(this.tokenRenewalTimeoutId);
+    const domain = AUTH_CONFIG.domainAlias;
+    const clientID = AUTH_CONFIG.clientId;
+    const returnToUrl = AUTH_CONFIG.callbackUrl;
+    const url = `https://${domain}/v2/logout?client_id=${clientID}&returnTo=${returnToUrl}`;
+    window.location.href = url;
   }
 
   renewToken() {
@@ -93,6 +96,12 @@ class AuthorizationService {
         this.renewToken();
       }, delay);
     }
+  }
+
+  clearSession() {
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('expires_at');
   }
 
   setSession(authResult) {
