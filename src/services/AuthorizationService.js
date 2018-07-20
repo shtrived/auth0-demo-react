@@ -33,19 +33,24 @@ class AuthorizationService {
   }
 
   handleAuthentication() {
-    this.webAuth.parseHash((err, result) => {
-      if (result && result.accessToken && result.idToken) {
-        this.setSession(result);
-        history.replace('/app');
-        return;
-      }
-      if (err) {
+    this.webAuth.parseHash(
+      {
+        __enableIdPInitiatedLogin: true,
+      },
+      (err, result) => {
+        if (result && result.accessToken && result.idToken) {
+          this.setSession(result);
+          history.replace('/app');
+          return;
+        }
+        if (err) {
+          history.replace('/');
+          console.log(err);
+          return;
+        }
         history.replace('/');
-        console.log(err);
-        return;
       }
-      history.replace('/');
-    });
+    );
   }
 
   isAuthenticated() {
