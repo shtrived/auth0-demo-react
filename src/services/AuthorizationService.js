@@ -2,7 +2,7 @@ import auth0 from 'auth0-js';
 import random from './Random';
 import history from '../history';
 
-import { AUTH_CONFIG } from './auth-variables';
+import { AUTH_CONFIG } from './AuthConfig';
 
 class AuthorizationService {
   constructor() {
