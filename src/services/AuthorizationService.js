@@ -80,8 +80,8 @@ class AuthorizationService {
     clearTimeout(this.tokenRenewalTimeoutId);
     const domain = AUTH_CONFIG.domainAlias;
     const clientID = AUTH_CONFIG.clientId;
-    const returnToUrl = AUTH_CONFIG.callbackUrl;
-    const url = `https://${domain}/v2/logout?client_id=${clientID}&returnTo=${returnToUrl}`;
+    const returnToUrl = encodeURIComponent(AUTH_CONFIG.logoutUrl);
+    const url = `https://${domain}/v2/logout?federated&client_id=${clientID}&returnTo=${returnToUrl}`;
     window.location.href = url;
   }
 

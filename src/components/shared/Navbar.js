@@ -22,6 +22,10 @@ class Navbar extends React.Component {
     authorizationService.logout();
   }
 
+  handleLogoutFederated() {
+    authorizationService.logoutFederated();
+  }
+
   render() {
     return (
       <Menu borderless fixed="top">
@@ -31,7 +35,10 @@ class Navbar extends React.Component {
             Auth0 Demo - React
           </Menu.Item>
           {this.props.private ? (
-            <AuthorizedNavbar handleLogout={this.handleLogout} />
+            <AuthorizedNavbar
+              handleLogout={this.handleLogout}
+              handleLogoutFederated={this.handleLogoutFederated}
+            />
           ) : (
             <PublicNavbar handleLogin={this.handleLogin} />
           )}
