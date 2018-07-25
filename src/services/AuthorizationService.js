@@ -60,9 +60,7 @@ class AuthorizationService {
       (err, result) => {
         if (err) {
           console.log(err);
-          this.webAuth.authorize({
-            domainAlias: AUTH_CONFIG.domainAlias,
-          });
+          this.webAuth.authorize();
           return;
         }
         this.setSession(result);
