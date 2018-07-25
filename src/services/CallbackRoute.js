@@ -9,23 +9,13 @@ class CallbackRoute extends React.Component {
     component: PropTypes.any,
   };
 
-  handleAuthentication(props) {
-    if (/access_token|id_token|error/.test(props.location.hash)) {
-      authorizationService.handleAuthentication();
-    }
+  componentDidMount() {
+    authorizationService.handleAuthentication();
   }
 
   render() {
     const { component: Component, ...rest } = this.props;
-    return (
-      <Route
-        {...rest}
-        render={props => {
-          this.handleAuthentication(props);
-          return <Component {...props} />;
-        }}
-      />
-    );
+    return <Route {...rest} component={Component} />;
   }
 }
 

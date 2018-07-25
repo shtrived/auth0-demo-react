@@ -1,20 +1,21 @@
 import auth0 from 'auth0-js';
-
+import random from './Random';
 import history from '../history';
 
 import { AUTH_CONFIG } from './auth-variables';
 
 class AuthorizationService {
   constructor() {
+    this.keyLength = 32;
+    this.tokenRenewalTimeoutId = 0;
     this.webAuth = new auth0.WebAuth({
       domain: AUTH_CONFIG.domainAlias,
       clientID: AUTH_CONFIG.clientId,
       redirectUri: AUTH_CONFIG.callbackUrl,
-      audience: AUTH_CONFIG.apiAudience,
       responseType: 'token id_token',
       scope: 'openid profile email',
+      audience: AUTH_CONFIG.apiAudience,
     });
-    this.tokenRenewalTimeoutId = 0;
   }
 
   getAccessToken() {
@@ -33,24 +34,14 @@ class AuthorizationService {
   }
 
   handleAuthentication() {
-    this.webAuth.parseHash(
-      {
-        __enableIdPInitiatedLogin: true,
-      },
-      (err, result) => {
-        if (result && result.accessToken && result.idToken) {
-          this.setSession(result);
-          history.replace('/app');
-          return;
-        }
-        if (err) {
-          history.replace('/');
-          console.log(err);
-          return;
-        }
-        history.replace('/');
+    this.webAuth.parseHash((err, result) => {
+      if (err) {
+        console.log(err);
+        return;
       }
-    );
+      this.setSession(result);
+      history.replace('/app');
+    });
   }
 
   isAuthenticated() {
@@ -59,9 +50,25 @@ class AuthorizationService {
   }
 
   login() {
-    this.webAuth.authorize({
-      doaminAlias: AUTH_CONFIG.domainAlias,
-    });
+    let nonce = random.getRandomString(this.keyLength);
+    let state = random.getRandomString(this.keyLength);
+    this.webAuth.checkSession(
+      {
+        nonce: nonce,
+        state: state,
+      },
+      (err, result) => {
+        if (err) {
+          console.log(err);
+          this.webAuth.authorize({
+            domainAlias: AUTH_CONFIG.domainAlias,
+          });
+          return;
+        }
+        this.setSession(result);
+        history.replace('/app');
+      }
+    );
   }
 
   logout() {
