@@ -14,12 +14,14 @@ function AuthorizedNavbar({ handleLogout, handleLogoutFederated }) {
       <Menu.Item as={NavLink} to="/app">
         Clients
       </Menu.Item>
-      <Menu.Item onClick={handleLogout} position="right">
-        <Icon name="sign out" /> Log out
-      </Menu.Item>
-      <Menu.Item onClick={handleLogoutFederated} position="right">
-        <Icon name="sign out" /> Log out (federated)
-      </Menu.Item>
+      <Menu.Menu position="right">
+        <Menu.Item onClick={handleLogout}>
+          <Icon name="sign out" /> Log out
+        </Menu.Item>
+        <Menu.Item onClick={handleLogoutFederated}>
+          <Icon name="sign out" /> Log out (federated)
+        </Menu.Item>
+      </Menu.Menu>
     </React.Fragment>
   );
 }
