@@ -48,14 +48,21 @@ class AuthorizationService {
     });
   }
 
+  getReturnTo() {
+    const returnTo = localStorage.getItem('returnTo');
+    localStorage.removeItem('returnTo');
+    return returnTo;
+  }
+
   handleAuthentication() {
+    const returnTo = this.getReturnTo();
     this.webAuth.parseHash((err, result) => {
       if (err) {
         console.log(err);
         return;
       }
       this.setSession(result);
-      history.replace('/app');
+      history.replace(returnTo || '/app');
     });
   }
 
@@ -139,7 +146,8 @@ class AuthorizationService {
     this.scheduleRenewal();
   }
 
-  stepUpAuthentication() {
+  stepUpAuthentication(returnTo) {
+    localStorage.setItem('returnTo', returnTo);
     this.webAuth.authorize({
       acr_values:
         'http://schemas.openid.net/pape/policies/2007/06/multi-factor',

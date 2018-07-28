@@ -21,7 +21,7 @@ class PrivateRoute extends React.Component {
             return null;
           }
           if (requireMfa && !authorizationService.hasMfa()) {
-            authorizationService.stepUpAuthentication();
+            authorizationService.stepUpAuthentication('/app/secret');
             return null;
           }
           return <Component {...props} />;
