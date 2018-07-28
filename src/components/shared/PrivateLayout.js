@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-import AuthorizedRoute from '../../services/AuthorizedRoute';
+import PrivateRoute from '../../services/PrivateRoute';
 
 import Clients from '../../containers/Clients';
 import Secret from '../Secret';
@@ -14,13 +14,13 @@ const propTypes = {
   match: PropTypes.object,
 };
 
-function AuthorizedLayout({ match }) {
+function PrivateLayout({ match }) {
   return (
     <React.Fragment>
       <Navbar private />
       <Container>
         <Route path={`${match.path}`} component={Clients} exact />
-        <AuthorizedRoute
+        <PrivateRoute
           path={`${match.path}/secret`}
           component={Secret}
           requireMfa
@@ -31,6 +31,6 @@ function AuthorizedLayout({ match }) {
   );
 }
 
-AuthorizedLayout.propTypes = propTypes;
+PrivateLayout.propTypes = propTypes;
 
-export default AuthorizedLayout;
+export default PrivateLayout;

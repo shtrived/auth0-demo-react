@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Image, Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-import AuthorizedNavbar from './AuthorizedNavbar';
+import PrivateNavbar from './PrivateNavbar';
 import PublicNavbar from './PublicNavbar';
 
 import authorizationService from '../../services/AuthorizationService';
@@ -35,7 +35,7 @@ class Navbar extends React.Component {
             Auth0 Demo - React
           </Menu.Item>
           {this.props.private ? (
-            <AuthorizedNavbar
+            <PrivateNavbar
               handleLogout={this.handleLogout}
               handleLogoutFederated={this.handleLogoutFederated}
             />

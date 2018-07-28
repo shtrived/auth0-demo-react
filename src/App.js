@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import AuthorizedLayout from './components/shared/AuthorizedLayout';
 import EmptyLayout from './components/shared/EmptyLayout';
+import PrivateLayout from './components/shared/PrivateLayout';
 import PublicLayout from './components/shared/PublicLayout';
 
-import AuthorizedRoute from './services/AuthorizedRoute';
+import PrivateRoute from './services/PrivateRoute';
 
 import history from './history';
 import './App.css';
@@ -15,11 +15,11 @@ import './App.css';
 const App = ({ store }) => (
   <Provider store={store}>
     <Router history={history}>
-      <React.Fragment>
-        <AuthorizedRoute path="/app" component={AuthorizedLayout} />
+      <Switch>
+        <PrivateRoute path="/app" component={PrivateLayout} />
         <Route path="/callback" component={EmptyLayout} />
         <Route component={PublicLayout} />
-      </React.Fragment>
+      </Switch>
     </Router>
   </Provider>
 );

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import authorizationService from './AuthorizationService';
 
-class AuthorizedRoute extends React.Component {
+class PrivateRoute extends React.Component {
   static propTypes = {
     component: PropTypes.any,
     requireMfa: PropTypes.bool,
@@ -31,4 +31,4 @@ class AuthorizedRoute extends React.Component {
   }
 }
 
-export default AuthorizedRoute;
+export default PrivateRoute;
