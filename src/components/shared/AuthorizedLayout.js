@@ -3,7 +3,10 @@ import { Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
+import AuthorizedRoute from '../../services/AuthorizedRoute';
+
 import Clients from '../../containers/Clients';
+import Secret from '../Secret';
 
 import Navbar from './Navbar';
 
@@ -17,6 +20,12 @@ function AuthorizedLayout({ match }) {
       <Navbar private />
       <Container>
         <Route path={`${match.path}`} component={Clients} exact />
+        <AuthorizedRoute
+          path={`${match.path}/secret`}
+          component={Secret}
+          requireMfa
+          exact
+        />
       </Container>
     </React.Fragment>
   );

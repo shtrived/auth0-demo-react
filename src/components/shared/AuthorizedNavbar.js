@@ -11,8 +11,11 @@ const propTypes = {
 function AuthorizedNavbar({ handleLogout, handleLogoutFederated }) {
   return (
     <React.Fragment>
-      <Menu.Item as={NavLink} to="/app">
+      <Menu.Item as={NavLink} to="/app" exact>
         Clients
+      </Menu.Item>
+      <Menu.Item as={NavLink} to="/app/secret" exact>
+        Secret
       </Menu.Item>
       <Menu.Menu position="right">
         <Menu.Item onClick={handleLogout}>

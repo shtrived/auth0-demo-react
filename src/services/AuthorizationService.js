@@ -1,6 +1,7 @@
 import auth0 from 'auth0-js';
 import random from './Random';
 import history from '../history';
+import jwt_decode from 'jwt-decode';
 
 import { AUTH_CONFIG } from './AuthConfig';
 
@@ -18,12 +19,26 @@ class AuthorizationService {
     });
   }
 
+  clearSession() {
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('expires_at');
+  }
+
   getAccessToken() {
     const accessToken = localStorage.getItem('access_token');
     if (!accessToken) {
       throw new Error('No access token found');
     }
     return accessToken;
+  }
+
+  getIDToken() {
+    const idToken = localStorage.getItem('id_token');
+    if (!idToken) {
+      throw new Error('No ID token found');
+    }
+    return idToken;
   }
 
   getProfile(cb) {
@@ -44,14 +59,20 @@ class AuthorizationService {
     });
   }
 
+  hasMfa() {
+    const idToken = this.getIDToken();
+    const decoded = jwt_decode(idToken);
+    return Array.isArray(decoded.amr) && decoded.amr.indexOf('mfa') >= 0;
+  }
+
   isAuthenticated() {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
 
   login() {
-    let nonce = random.getRandomString(this.keyLength);
-    let state = random.getRandomString(this.keyLength);
+    const nonce = random.getRandomString(this.keyLength);
+    const state = random.getRandomString(this.keyLength);
     this.webAuth.checkSession(
       {
         nonce: nonce,
@@ -108,12 +129,6 @@ class AuthorizationService {
     }
   }
 
-  clearSession() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('expires_at');
-  }
-
   setSession(authResult) {
     const expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -122,6 +137,14 @@ class AuthorizationService {
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('expires_at', expiresAt);
     this.scheduleRenewal();
+  }
+
+  stepUpAuthentication() {
+    this.webAuth.authorize({
+      acr_values:
+        'http://schemas.openid.net/pape/policies/2007/06/multi-factor',
+    });
+    return;
   }
 }
 
