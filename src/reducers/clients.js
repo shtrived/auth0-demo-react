@@ -9,7 +9,7 @@ import {
   LOAD_CLIENTS_SUCCESS,
   RESET_CLIENTS,
   SORT_CLIENTS,
-} from '../actions';
+} from '../actions/clients';
 
 function clearError(state, action) {
   return {

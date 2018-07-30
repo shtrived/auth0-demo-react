@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
-import { loadClients, resetClients, sortClients } from '../actions';
+import { loadClients, resetClients, sortClients } from '../actions/clients';
 
 import ClientTable from '../components/ClientTable';
 import ErrorMessage from '../components/shared/ErrorMessage';
