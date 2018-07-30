@@ -35,7 +35,7 @@ export function clearError() {
 
 export function loadClients() {
   let fields = ['app_type', 'client_id', 'description', 'name'];
-  return function(dispatch) {
+  return dispatch => {
     dispatch(clearError());
     dispatch(loadClientsRequest());
     new WebApiService()
@@ -48,7 +48,7 @@ export function loadClients() {
 }
 
 export function resetClients() {
-  return function(dispatch) {
+  return dispatch => {
     dispatch(clearError());
     dispatch({
       type: RESET_CLIENTS,
@@ -57,7 +57,7 @@ export function resetClients() {
 }
 
 export function sortClients(sortColumn) {
-  return function(dispatch) {
+  return dispatch => {
     dispatch(clearError());
     dispatch({
       type: SORT_CLIENTS,
