@@ -2,6 +2,11 @@
   "name": "auth0-demo-react",
   "version": "1.0.0",
   "license": "MIT",
+  "description": "Auth0 React / Redux demo implementation.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rdahbura/auth0-demo-react.git"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
