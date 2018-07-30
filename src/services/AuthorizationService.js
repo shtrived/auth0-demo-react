@@ -85,7 +85,9 @@ class AuthorizationService {
       (err, result) => {
         if (err) {
           console.log(err);
-          this.webAuth.authorize();
+          this.webAuth.authorize({
+            // connection_scope: 'openid sdpp-w',
+          });
           return;
         }
         this._setSession(result);
