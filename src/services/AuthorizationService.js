@@ -7,6 +7,7 @@ import { AUTH_CONFIG } from './AuthConfig';
 
 class AuthorizationService {
   constructor() {
+    this.profile = null;
     this.keyLength = 32;
     this.tokenRenewalTimeoutId = 0;
     this.webAuth = new auth0.WebAuth({
@@ -19,10 +20,12 @@ class AuthorizationService {
     });
   }
 
-  clearSession() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('expires_at');
+  changePassword() {
+    return this.getProfile().then(profile => {
+      const connection = profile['https://letsdoauth.com/connection'];
+      const email = profile.email;
+      return this._changePassword(connection, email);
+    });
   }
 
   getAccessToken() {
@@ -41,27 +44,21 @@ class AuthorizationService {
     return idToken;
   }
 
-  getProfile(cb) {
-    const accessToken = this.getAccessToken();
-    this.webAuth.client.userInfo(accessToken, (err, profile) => {
-      cb(err, profile);
-    });
-  }
-
-  getReturnTo() {
-    const returnTo = localStorage.getItem('returnTo');
-    localStorage.removeItem('returnTo');
-    return returnTo;
+  getProfile() {
+    if (this.profile) {
+      return Promise.resolve(this.profile);
+    }
+    return this._getUserInfo();
   }
 
   handleAuthentication() {
-    const returnTo = this.getReturnTo();
+    const returnTo = this._getReturnTo();
     this.webAuth.parseHash((err, result) => {
       if (err) {
         console.log(err);
         return;
       }
-      this.setSession(result);
+      this._setSession(result);
       history.replace(returnTo || '/app');
     });
   }
@@ -91,20 +88,20 @@ class AuthorizationService {
           this.webAuth.authorize();
           return;
         }
-        this.setSession(result);
+        this._setSession(result);
         history.replace('/app');
       }
     );
   }
 
   logout() {
-    this.clearSession();
+    this._clearSession();
     clearTimeout(this.tokenRenewalTimeoutId);
     history.replace('/');
   }
 
   logoutFederated() {
-    this.clearSession();
+    this._clearSession();
     clearTimeout(this.tokenRenewalTimeoutId);
     const domain = AUTH_CONFIG.domainAlias;
     const clientID = AUTH_CONFIG.clientId;
@@ -113,46 +110,86 @@ class AuthorizationService {
     window.location.href = url;
   }
 
-  renewToken() {
-    this.webAuth.checkSession({}, (err, result) => {
-      if (err) {
-        console.log(
-          `Could not get a new token (${err.error}: ${err.error_description}).`
-        );
-        return;
-      }
-      this.setSession(result);
-      console.log(`Successfully renewed auth!`);
-    });
-  }
-
-  scheduleRenewal() {
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    const delay = expiresAt - Date.now();
-    if (delay > 0) {
-      this.tokenRenewalTimeoutId = setTimeout(() => {
-        this.renewToken();
-      }, delay);
-    }
-  }
-
-  setSession(authResult) {
-    const expiresAt = JSON.stringify(
-      authResult.expiresIn * 1000 + new Date().getTime()
-    );
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('expires_at', expiresAt);
-    this.scheduleRenewal();
-  }
-
   stepUpAuthentication(returnTo) {
     localStorage.setItem('returnTo', returnTo);
     this.webAuth.authorize({
       acr_values:
         'http://schemas.openid.net/pape/policies/2007/06/multi-factor',
     });
-    return;
+  }
+
+  _changePassword(connection, email) {
+    return new Promise((resolve, reject) => {
+      this.webAuth.changePassword(
+        {
+          connection: connection,
+          email: email,
+        },
+        (err, resp) => {
+          if (err) {
+            reject(err);
+            return;
+          }
+          resolve(resp);
+        }
+      );
+    });
+  }
+
+  _clearSession() {
+    localStorage.clear();
+  }
+
+  _getReturnTo() {
+    const returnTo = localStorage.getItem('returnTo');
+    localStorage.removeItem('returnTo');
+    return returnTo;
+  }
+
+  _getUserInfo() {
+    const accessToken = this.getAccessToken();
+    return new Promise((resolve, reject) => {
+      this.webAuth.client.userInfo(accessToken, (err, profile) => {
+        if (err) {
+          reject(err);
+          return;
+        }
+        this.profile = profile;
+        resolve(this.profile);
+      });
+    });
+  }
+
+  _renewToken() {
+    this.webAuth.checkSession({}, (err, result) => {
+      if (err) {
+        const error = err.error;
+        const description = err.error_description;
+        console.log(`Couldn't get a new token, (${error}: ${description}).`);
+        return;
+      }
+      this._setSession(result);
+      console.log('Successfully renewed auth!');
+    });
+  }
+
+  _scheduleRenewal() {
+    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    const delay = expiresAt - Date.now();
+    if (delay > 0) {
+      this.tokenRenewalTimeoutId = setTimeout(() => {
+        this._renewToken();
+      }, delay);
+    }
+  }
+
+  _setSession(authResult) {
+    const time = new Date().getTime();
+    const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + time);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('expires_at', expiresAt);
+    this._scheduleRenewal();
   }
 }
 
