@@ -20,7 +20,8 @@ class Clients extends React.Component {
     handleSort: PropTypes.func.isRequired,
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
     this.props.handleResetClients();
   }
 
