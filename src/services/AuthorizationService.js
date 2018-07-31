@@ -3,7 +3,7 @@ import random from './Random';
 import history from '../history';
 import jwt_decode from 'jwt-decode';
 
-import { AUTH_CONFIG } from './AuthConfig';
+import { AUTH_CONFIG } from './Constants';
 
 class AuthorizationService {
   constructor() {

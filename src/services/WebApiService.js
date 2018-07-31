@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import authorizationService from './AuthorizationService';
 
-import { AUTH_CONFIG } from './AuthConfig';
+import { AUTH_CONFIG } from './Constants';
 
 class WebApiService {
   constructor() {
