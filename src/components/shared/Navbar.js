@@ -20,7 +20,7 @@ class Navbar extends React.Component {
     this.handleModalOnClose = this.handleModalOnClose.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.state = {
-      email: '',
+      email: '...',
       modalMessage: null,
       modalOpen: false,
     };
