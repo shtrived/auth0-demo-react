@@ -38,12 +38,15 @@ export function loadClients() {
   return dispatch => {
     dispatch(clearError());
     dispatch(loadClientsRequest());
-    new WebApiService()
-      .getClients(fields)
-      .then(
-        response => dispatch(loadClientsSuccess(response)),
-        error => dispatch(loadClientsFailure(error))
-      );
+    return new WebApiService().getClients(fields).then(
+      response => {
+        dispatch(loadClientsSuccess(response));
+        // setTimeout(() => {
+        //   dispatch(resetClients());
+        // }, 5000);
+      },
+      error => dispatch(loadClientsFailure(error))
+    );
   };
 }
 
