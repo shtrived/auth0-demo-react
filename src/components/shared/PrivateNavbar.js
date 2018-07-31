@@ -3,13 +3,6 @@ import { NavLink } from 'react-router-dom';
 import { Dropdown, Icon, Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const propTypes = {
-  email: PropTypes.string,
-  handleLogout: PropTypes.func,
-  handleLogoutFederated: PropTypes.func,
-  handleChangePassword: PropTypes.func,
-};
-
 function AuthorizedNavbar({
   email,
   handleLogout,
@@ -58,6 +51,11 @@ function AuthorizedNavbar({
   );
 }
 
-AuthorizedNavbar.propTypes = propTypes;
+AuthorizedNavbar.propTypes = {
+  email: PropTypes.string,
+  handleLogout: PropTypes.func,
+  handleLogoutFederated: PropTypes.func,
+  handleChangePassword: PropTypes.func,
+};
 
 export default AuthorizedNavbar;

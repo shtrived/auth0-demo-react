@@ -11,10 +11,6 @@ import authorizationService from '../../services/AuthorizationService';
 import logo from '../../images/logo.svg';
 
 class Navbar extends React.Component {
-  static propTypes = {
-    private: PropTypes.bool,
-  };
-
   constructor(props) {
     super(props);
     this.handleModalOnClose = this.handleModalOnClose.bind(this);
@@ -103,5 +99,9 @@ class Navbar extends React.Component {
     );
   }
 }
+
+Navbar.propTypes = {
+  private: PropTypes.bool,
+};
 
 export default Navbar;
