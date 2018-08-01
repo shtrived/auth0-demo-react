@@ -18,7 +18,7 @@ class Navbar extends React.Component {
     this.state = {
       email: '...',
       modalMessage: null,
-      modalOpen: false,
+      modalOpen: false
     };
   }
 
@@ -28,7 +28,7 @@ class Navbar extends React.Component {
     }
     authorizationService.getProfile().then(profile => {
       this.setState({
-        email: profile.email,
+        email: profile.email
       });
     });
   }
@@ -39,13 +39,13 @@ class Navbar extends React.Component {
       .then(resp => {
         this.setState({
           modalMessage: resp,
-          modalOpen: true,
+          modalOpen: true
         });
       })
       .catch(err => {
         this.setState({
           modalMessage: err.description,
-          modalOpen: true,
+          modalOpen: true
         });
       });
   }
@@ -65,8 +65,12 @@ class Navbar extends React.Component {
   handleModalOnClose() {
     this.setState({
       modelMessage: null,
-      modalOpen: false,
+      modalOpen: false
     });
+  }
+
+  handleSignup() {
+    authorizationService.signup();
   }
 
   render() {
@@ -91,7 +95,10 @@ class Navbar extends React.Component {
                 handleLogoutFederated={this.handleLogoutFederated}
               />
             ) : (
-              <PublicNavbar handleLogin={this.handleLogin} />
+              <PublicNavbar
+                handleLogin={this.handleLogin}
+                handleSignup={this.handleSignup}
+              />
             )}
           </Container>
         </Menu>
@@ -101,7 +108,7 @@ class Navbar extends React.Component {
 }
 
 Navbar.propTypes = {
-  private: PropTypes.bool,
+  private: PropTypes.bool
 };
 
 export default Navbar;

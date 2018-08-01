@@ -112,6 +112,12 @@ class AuthorizationService {
     window.location.href = url;
   }
 
+  signup() {
+    this.webAuth.authorize({
+      mode: 'signUp'
+    });
+  }
+
   stepUpAuthentication(returnTo) {
     localStorage.setItem('returnTo', returnTo);
     this.webAuth.authorize({
