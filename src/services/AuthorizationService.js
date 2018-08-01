@@ -16,7 +16,7 @@ class AuthorizationService {
       redirectUri: AUTH_CONFIG.callbackUrl,
       responseType: 'token id_token',
       scope: 'openid profile email',
-      audience: AUTH_CONFIG.apiAudience,
+      audience: AUTH_CONFIG.apiAudience
     });
   }
 
@@ -80,7 +80,7 @@ class AuthorizationService {
     this.webAuth.checkSession(
       {
         nonce: nonce,
-        state: state,
+        state: state
       },
       (err, result) => {
         if (err) {
@@ -115,8 +115,7 @@ class AuthorizationService {
   stepUpAuthentication(returnTo) {
     localStorage.setItem('returnTo', returnTo);
     this.webAuth.authorize({
-      acr_values:
-        'http://schemas.openid.net/pape/policies/2007/06/multi-factor',
+      acr_values: 'http://schemas.openid.net/pape/policies/2007/06/multi-factor'
     });
   }
 
@@ -125,7 +124,7 @@ class AuthorizationService {
       this.webAuth.changePassword(
         {
           connection: connection,
-          email: email,
+          email: email
         },
         (err, resp) => {
           if (err) {
