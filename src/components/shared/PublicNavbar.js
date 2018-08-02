@@ -13,11 +13,11 @@ function PublicNavbar({ handleLogin, handleSignup }) {
         About Us
       </Menu.Item>
       <Menu.Menu position="right">
-        <Menu.Item onClick={handleLogin} position="right">
-          <Icon name="sign in" /> Log in
-        </Menu.Item>
         <Menu.Item onClick={handleSignup} position="right">
           <Icon name="signup" /> Sign up
+        </Menu.Item>
+        <Menu.Item onClick={handleLogin} position="right">
+          <Icon name="sign in" /> Log in
         </Menu.Item>
       </Menu.Menu>
     </React.Fragment>
