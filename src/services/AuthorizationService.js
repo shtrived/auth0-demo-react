@@ -1,9 +1,10 @@
 import auth0 from 'auth0-js';
-import random from './Random';
-import history from '../history';
 import jwt_decode from 'jwt-decode';
 
-import { AUTH_CONFIG } from '../constants';
+import random from './Random';
+import history from '../history';
+
+import { AUTH_CONFIG, LOCAL_STORAGE } from '../constants';
 
 class AuthorizationService {
   constructor() {
@@ -29,7 +30,7 @@ class AuthorizationService {
   }
 
   getAccessToken() {
-    const accessToken = localStorage.getItem('access_token');
+    const accessToken = localStorage.getItem(LOCAL_STORAGE.accessToken);
     if (!accessToken) {
       throw new Error('No access token found');
     }
@@ -37,7 +38,7 @@ class AuthorizationService {
   }
 
   getIDToken() {
-    const idToken = localStorage.getItem('id_token');
+    const idToken = localStorage.getItem(LOCAL_STORAGE.idToken);
     if (!idToken) {
       throw new Error('No ID token found');
     }
@@ -70,7 +71,7 @@ class AuthorizationService {
   }
 
   isAuthenticated() {
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    const expiresAt = JSON.parse(localStorage.getItem(LOCAL_STORAGE.expiresAt));
     return new Date().getTime() < expiresAt;
   }
 
@@ -119,7 +120,7 @@ class AuthorizationService {
   }
 
   stepUpAuthentication(returnTo) {
-    localStorage.setItem('returnTo', returnTo);
+    localStorage.setItem(LOCAL_STORAGE.returnTo, returnTo);
     this.webAuth.authorize({
       acr_values: 'http://schemas.openid.net/pape/policies/2007/06/multi-factor'
     });
@@ -148,8 +149,8 @@ class AuthorizationService {
   }
 
   _getReturnTo() {
-    const returnTo = localStorage.getItem('returnTo');
-    localStorage.removeItem('returnTo');
+    const returnTo = localStorage.getItem(LOCAL_STORAGE.returnTo);
+    localStorage.removeItem(LOCAL_STORAGE.returnTo);
     return returnTo;
   }
 
@@ -181,7 +182,7 @@ class AuthorizationService {
   }
 
   _scheduleRenewal() {
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    const expiresAt = JSON.parse(localStorage.getItem(LOCAL_STORAGE.expiresAt));
     const delay = expiresAt - Date.now();
     if (delay > 0) {
       this.tokenRenewalTimeoutId = setTimeout(() => {
@@ -193,9 +194,9 @@ class AuthorizationService {
   _setSession(authResult) {
     const time = new Date().getTime();
     const expiresAt = JSON.stringify(authResult.expiresIn * 1000 + time);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem(LOCAL_STORAGE.idToken, authResult.idToken);
+    localStorage.setItem(LOCAL_STORAGE.accessToken, authResult.accessToken);
+    localStorage.setItem(LOCAL_STORAGE.expiresAt, expiresAt);
     this._scheduleRenewal();
   }
 }

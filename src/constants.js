@@ -5,14 +5,21 @@ export const AUTH_CONFIG = {
   callbackUrl: 'http://localhost:3000/callback',
   logoutUrl: 'http://localhost:3000',
   apiAudience: 'https://api.letsdoauth.com',
-  apiUrl: 'http://localhost:3001',
+  apiUrl: 'http://localhost:3001'
+};
+
+export const LOCAL_STORAGE = {
+  accessToken: 'access_token',
+  expiresAt: 'expires_at',
+  idToken: 'id_token',
+  returnTo: 'return_to'
 };
 
 export const EMPTY_ARRAY = Object.freeze([]);
 
 export const SORT_DIRECTION = Object.freeze({
   ASC: 'ascending',
-  DESC: 'descending',
+  DESC: 'descending'
 });
 
 export const INITIAL_STATE = Object.freeze({
@@ -20,5 +27,5 @@ export const INITIAL_STATE = Object.freeze({
   isFetching: false,
   items: EMPTY_ARRAY,
   sortColumn: 'name',
-  sortDirection: SORT_DIRECTION.ASC,
+  sortDirection: SORT_DIRECTION.ASC
 });
