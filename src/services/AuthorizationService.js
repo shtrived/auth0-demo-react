@@ -4,7 +4,7 @@ import jwt_decode from 'jwt-decode';
 import random from './Random';
 import history from '../history';
 
-import { AUTH_CONFIG, LOCAL_STORAGE } from '../constants';
+import { AUTH_CONFIG, CLAIMS, LOCAL_STORAGE } from '../constants';
 
 class AuthorizationService {
   constructor() {
@@ -23,7 +23,7 @@ class AuthorizationService {
 
   changePassword() {
     return this.getProfile().then(profile => {
-      const connection = profile['https://letsdoauth.com/connection'];
+      const connection = profile[CLAIMS.connection];
       const email = profile.email;
       return this._changePassword(connection, email);
     });

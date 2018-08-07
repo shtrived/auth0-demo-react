@@ -1,3 +1,5 @@
+const ns = 'https://letsdoauth.com';
+
 export const AUTH_CONFIG = {
   domain: 'rudydahbura.auth0.com',
   domainAlias: 'idp.letsdoauth.com',
@@ -6,6 +8,13 @@ export const AUTH_CONFIG = {
   logoutUrl: 'http://localhost:3000',
   apiAudience: 'https://api.letsdoauth.com',
   apiUrl: 'http://localhost:3001'
+};
+
+export const CLAIMS = {
+  connection: `${ns}/connection`,
+  connectionStrategy: `${ns}/connectionStrategy`,
+  country: `${ns}/country`,
+  timezone: `${ns}/timezone`
 };
 
 export const LOCAL_STORAGE = {
