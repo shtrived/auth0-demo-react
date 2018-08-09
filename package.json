@@ -35,6 +35,6 @@
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.1",
-    "prettier": "^1.14.1"
+    "prettier": "^1.14.2"
   }
 }
