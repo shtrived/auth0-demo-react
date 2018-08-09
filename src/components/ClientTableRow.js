@@ -6,7 +6,7 @@ const propTypes = {
   client_id: PropTypes.string,
   name: PropTypes.string,
   description: PropTypes.string,
-  app_type: PropTypes.string,
+  app_type: PropTypes.string
 };
 
 function ClientTableRow(props) {

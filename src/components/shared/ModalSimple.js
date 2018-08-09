@@ -6,7 +6,7 @@ class ModalSimple extends Component {
   static propTypes = {
     message: PropTypes.string,
     onClose: PropTypes.func,
-    open: PropTypes.bool,
+    open: PropTypes.bool
   };
 
   render() {

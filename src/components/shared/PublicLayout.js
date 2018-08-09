@@ -9,7 +9,7 @@ import AboutUs from '../AboutUs';
 import Home from '../Home';
 
 const propTypes = {
-  match: PropTypes.object,
+  match: PropTypes.object
 };
 
 function PublicLayout({ match }) {

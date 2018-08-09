@@ -7,7 +7,7 @@ function AuthorizedNavbar({
   email,
   handleLogout,
   handleLogoutFederated,
-  handleChangePassword,
+  handleChangePassword
 }) {
   return (
     <React.Fragment>
@@ -55,7 +55,7 @@ AuthorizedNavbar.propTypes = {
   email: PropTypes.string,
   handleLogout: PropTypes.func,
   handleLogoutFederated: PropTypes.func,
-  handleChangePassword: PropTypes.func,
+  handleChangePassword: PropTypes.func
 };
 
 export default AuthorizedNavbar;

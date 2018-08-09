@@ -11,7 +11,7 @@ import Secret from '../Secret';
 import Navbar from './Navbar';
 
 const propTypes = {
-  match: PropTypes.object,
+  match: PropTypes.object
 };
 
 function PrivateLayout({ match }) {

@@ -10,16 +10,16 @@ class WebApiService {
     this.axios = axios.create({
       baseURL: AUTH_CONFIG.apiUrl,
       headers: {
-        Authorization: 'Bearer ' + authorizationService.getAccessToken(),
-      },
+        Authorization: 'Bearer ' + authorizationService.getAccessToken()
+      }
     });
   }
 
   getClients(fields) {
     return this.axios.get('/api/clients', {
       params: {
-        fields: _.join(fields, ','),
-      },
+        fields: _.join(fields, ',')
+      }
     });
   }
 }

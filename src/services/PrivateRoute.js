@@ -7,7 +7,7 @@ import authorizationService from './AuthorizationService';
 class PrivateRoute extends React.Component {
   static propTypes = {
     component: PropTypes.any,
-    requireMfa: PropTypes.bool,
+    requireMfa: PropTypes.bool
   };
 
   render() {
