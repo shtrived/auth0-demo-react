@@ -8,7 +8,7 @@ import PublicNavbar from './PublicNavbar';
 
 import authorizationService from '../../services/AuthorizationService';
 
-import logo from '../../images/logo.svg';
+import logo from '../../images/logo.png';
 
 class Navbar extends React.Component {
   constructor(props) {
