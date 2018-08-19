@@ -84,7 +84,7 @@ class Navbar extends React.Component {
         <Menu borderless fixed="top">
           <Container>
             <Menu.Item as="a" header>
-              <Image size="mini" src={logo} style={{ marginRight: '1.5em' }} />
+              <Image spaced="right" src={logo} width="24" />
               Auth0 Demo - React
             </Menu.Item>
             {this.props.private ? (
