@@ -1,7 +1,6 @@
 import auth0 from 'auth0-js';
 import jwt_decode from 'jwt-decode';
 
-import random from './Random';
 import history from '../history';
 
 import { AUTH_CONFIG, CLAIMS, LOCAL_STORAGE } from '../constants';
@@ -76,25 +75,7 @@ class AuthorizationService {
   }
 
   login() {
-    const nonce = random.getRandomString(this.keyLength);
-    const state = random.getRandomString(this.keyLength);
-    this.webAuth.checkSession(
-      {
-        nonce: nonce,
-        state: state
-      },
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          this.webAuth.authorize({
-            // connection_scope: 'openid sdpp-w',
-          });
-          return;
-        }
-        this._setSession(result);
-        history.replace('/app');
-      }
-    );
+    this.webAuth.authorize();
   }
 
   logout() {
