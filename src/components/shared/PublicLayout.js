@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Navbar from './Navbar';
 
 import AboutUs from '../AboutUs';
+import Error from '../Error';
 import Home from '../Home';
 
 const propTypes = {
@@ -20,6 +21,10 @@ function PublicLayout({ match }) {
         <Switch>
           <Route path={`${match.path}`} component={Home} exact />
           <Route path={`${match.path}about-us`} component={AboutUs} />
+          <Route
+            path={`${match.path}error/:error/description/:description`}
+            component={Error}
+          />
         </Switch>
       </Container>
     </React.Fragment>

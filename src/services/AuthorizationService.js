@@ -55,7 +55,9 @@ class AuthorizationService {
     const returnTo = this._getReturnTo();
     this.webAuth.parseHash((err, result) => {
       if (err) {
-        console.log(err);
+        history.replace(
+          `error/${err.error}/description/${err.errorDescription}`
+        );
         return;
       }
       this._setSession(result);
