@@ -7,7 +7,7 @@ export const AUTH_CONFIG = {
   callbackUrl: 'https://localhost:3000/callback',
   logoutUrl: 'https://localhost:3000',
   apiAudience: 'https://api.letsdoauth.com',
-  apiUrl: 'http://localhost:3001'
+  apiUrl: 'https://localhost:3443'
 };
 
 export const CLAIMS = {
