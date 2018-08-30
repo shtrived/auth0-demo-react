@@ -2,7 +2,7 @@
   "env": {
     "browser": true
   },
-  "extends": "react-app",
+  "extends": ["react-app"],
   "parserOptions": {
     "ecmaVersion": 2017
   }
