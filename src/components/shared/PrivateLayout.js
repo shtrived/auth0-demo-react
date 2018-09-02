@@ -8,7 +8,7 @@ import PrivateRoute from '../../services/PrivateRoute';
 import Clients from '../../containers/Clients';
 import Secret from '../Secret';
 
-import Navbar from './Navbar';
+import StickyNavbar from './StickyNavbar';
 
 const propTypes = {
   match: PropTypes.object
@@ -17,7 +17,7 @@ const propTypes = {
 function PrivateLayout({ match }) {
   return (
     <React.Fragment>
-      <Navbar private />
+      <StickyNavbar private />
       <Container>
         <Route path={`${match.path}`} component={Clients} exact />
         <PrivateRoute

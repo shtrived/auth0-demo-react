@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 import { loadClients, resetClients, sortClients } from '../actions/clients';
@@ -36,7 +35,7 @@ class Clients extends React.Component {
       handleSort
     } = this.props;
     return (
-      <Container style={{ marginTop: '7em' }}>
+      <div style={{ marginTop: '7em' }}>
         <ErrorMessage error={error} />
         <ClientTable
           items={items}
@@ -46,7 +45,7 @@ class Clients extends React.Component {
           handleClickClients={handleClickClients}
           handleSort={handleSort}
         />
-      </Container>
+      </div>
     );
   }
 }

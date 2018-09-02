@@ -1,9 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-import Navbar from './Navbar';
+import StickyNavbar from './StickyNavbar';
 
 import AboutUs from '../AboutUs';
 import Error from '../Error';
@@ -16,8 +15,8 @@ const propTypes = {
 function PublicLayout({ match }) {
   return (
     <React.Fragment>
-      <Navbar />
-      <Container>
+      <StickyNavbar />
+      <main className="container">
         <Switch>
           <Route path={`${match.path}`} component={Home} exact />
           <Route path={`${match.path}about-us`} component={AboutUs} />
@@ -26,7 +25,7 @@ function PublicLayout({ match }) {
             component={Error}
           />
         </Switch>
-      </Container>
+      </main>
     </React.Fragment>
   );
 }

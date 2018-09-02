@@ -1,37 +1,37 @@
 import React, { Component } from 'react';
-import { Button, Header, Modal, Transition } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class ModalSimple extends Component {
   static propTypes = {
+    isOpen: PropTypes.bool,
     message: PropTypes.string,
-    onClose: PropTypes.func,
-    open: PropTypes.bool
+    onToggle: PropTypes.func
   };
 
+  constructor(props) {
+    super(props);
+    this.handleToggle = this.handleToggle.bind(this);
+  }
+
+  handleToggle() {
+    const { onToggle } = this.props;
+    onToggle();
+  }
+
   render() {
-    const { message, onClose, open } = this.props;
     return (
-      <Transition animation="fade down" duration={500} visible={open}>
-        <Modal
-          centered={false}
-          dimmer={true}
-          onClose={onClose}
-          open={open}
-          size="small"
-        >
-          <Header
-            content="Please review the following message:"
-            icon="info circle"
-          />
-          <Modal.Content>
-            <p>{message}</p>
-          </Modal.Content>
-          <Modal.Actions>
-            <Button content="OK" icon="checkmark" onClick={onClose} positive />
-          </Modal.Actions>
-        </Modal>
-      </Transition>
+      <Modal isOpen={this.props.isOpen} toggle={this.handleToggle}>
+        <ModalHeader toggle={this.handleToggle}>
+          Please review the following message:
+        </ModalHeader>
+        <ModalBody>{this.props.message}</ModalBody>
+        <ModalFooter>
+          <Button color="secondary" onClick={this.handleToggle}>
+            Close
+          </Button>
+        </ModalFooter>
+      </Modal>
     );
   }
 }

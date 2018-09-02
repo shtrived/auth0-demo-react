@@ -1,0 +1,81 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import {
+  Collapse,
+  Container,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand
+} from 'reactstrap';
+
+import ModalSimple from './ModalSimple';
+import PrivateNavbar from './PrivateNavbar';
+import PublicNavbar from './PublicNavbar';
+
+import logo from '../../images/logo.png';
+
+class StickyNavbar extends React.Component {
+  static propTypes = {
+    private: PropTypes.bool
+  };
+
+  constructor(props) {
+    super(props);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleModalToggle = this.handleModalToggle.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+    this.state = {
+      isOpen: false,
+      modalIsOpen: false,
+      modalMessage: null
+    };
+  }
+
+  handlePasswordChange(message) {
+    this.setState({
+      modalIsOpen: true,
+      modalMessage: message
+    });
+  }
+
+  handleModalToggle() {
+    this.setState({
+      modalIsOpen: !this.state.modalIsOpen
+    });
+  }
+
+  handleToggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <ModalSimple
+          isOpen={this.state.modalIsOpen}
+          message={this.state.modalMessage}
+          onToggle={this.handleModalToggle}
+        />
+        <Navbar color="light" light expand="md">
+          <Container>
+            <NavbarBrand href="/">
+              <img src={logo} className="mr-1" height="30" alt="" /> Auth0 Demo
+            </NavbarBrand>
+            <NavbarToggler onClick={this.handleToggle} />
+            <Collapse isOpen={this.state.isOpen} navbar>
+              {this.props.private ? (
+                <PrivateNavbar onPasswordChange={this.handlePasswordChange} />
+              ) : (
+                <PublicNavbar />
+              )}
+            </Collapse>
+          </Container>
+        </Navbar>
+      </React.Fragment>
+    );
+  }
+}
+
+export default StickyNavbar;

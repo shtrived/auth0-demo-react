@@ -1,9 +1,9 @@
 import React from 'react';
-import { Container, Header } from 'semantic-ui-react';
+import { Header } from 'semantic-ui-react';
 
 function Home() {
   return (
-    <Container text style={{ marginTop: '7em' }}>
+    <div style={{ marginTop: '7em' }}>
       <Header as="h1">Home</Header>
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
@@ -20,7 +20,7 @@ function Home() {
         vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
         feugiat a.
       </p>
-    </Container>
+    </div>
   );
 }
 
