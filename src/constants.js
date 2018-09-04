@@ -38,3 +38,7 @@ export const INITIAL_STATE = Object.freeze({
   sortColumn: 'name',
   sortDirection: SORT_DIRECTION.ASC
 });
+
+export const INITIAL_STATE_ERRORS = Object.freeze({
+  errors: EMPTY_ARRAY
+});

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import StickyNavbar from './StickyNavbar';
@@ -16,7 +17,7 @@ function PublicLayout({ match }) {
   return (
     <React.Fragment>
       <StickyNavbar />
-      <main className="container">
+      <Container style={{ marginTop: '7em' }}>
         <Switch>
           <Route path={`${match.path}`} component={Home} exact />
           <Route path={`${match.path}about-us`} component={AboutUs} />
@@ -25,7 +26,7 @@ function PublicLayout({ match }) {
             component={Error}
           />
         </Switch>
-      </main>
+      </Container>
     </React.Fragment>
   );
 }

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Button, Table } from 'semantic-ui-react';
+import { Button, Table } from 'reactstrap';
 import PropTypes from 'prop-types';
-
-import ClientTableRow from './ClientTableRow';
 
 class ClientTable extends React.Component {
   static propTypes = {
@@ -25,42 +23,50 @@ class ClientTable extends React.Component {
     } = this.props;
     return (
       <React.Fragment>
-        <Button
-          content="Get Clients"
-          icon="window restore outline"
-          labelPosition="left"
-          onClick={handleClickClients}
-          primary
-        />
-        <Button content="Reset" onClick={handleClickReset} />
-        <Table basic="very" sortable>
-          <Table.Header fullWidth>
-            <Table.Row>
-              <Table.HeaderCell
+        <div className="mb-3">
+          <Button className="mr-1" color="primary" onClick={handleClickClients}>
+            Get Clients
+          </Button>
+          <Button color="secondary" onClick={handleClickReset}>
+            Reset
+          </Button>
+        </div>
+        <Table>
+          <thead>
+            <tr>
+              <th
                 sorted={sortColumn === 'name' ? sortDirection : null}
                 onClick={() => handleSort('name')}
               >
                 Name
-              </Table.HeaderCell>
-              <Table.HeaderCell
+              </th>
+              <th
                 sorted={sortColumn === 'description' ? sortDirection : null}
                 onClick={() => handleSort('description')}
               >
                 Description
-              </Table.HeaderCell>
-              <Table.HeaderCell
+              </th>
+              <th
                 sorted={sortColumn === 'client_id' ? sortDirection : null}
                 onClick={() => handleSort('client_id')}
               >
                 Client ID
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
             {items.map(item => (
-              <ClientTableRow key={item.client_id} {...item} />
+              <tr key={item.client_id}>
+                <td>
+                  {item.name}
+                  <br />
+                  {item.app_type || 'none'}
+                </td>
+                <td>{item.description}</td>
+                <td>{item.client_id}</td>
+              </tr>
             ))}
-          </Table.Body>
+          </tbody>
         </Table>
       </React.Fragment>
     );

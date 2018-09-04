@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   Container,
@@ -7,6 +7,7 @@ import {
   NavbarToggler,
   NavbarBrand
 } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import ModalSimple from './ModalSimple';
 import PrivateNavbar from './PrivateNavbar';
@@ -58,9 +59,9 @@ class StickyNavbar extends React.Component {
           message={this.state.modalMessage}
           onToggle={this.handleModalToggle}
         />
-        <Navbar color="light" light expand="md">
+        <Navbar color="light" expand="md" fixed="top" light>
           <Container>
-            <NavbarBrand href="/">
+            <NavbarBrand tag={Link} to="/">
               <img src={logo} className="mr-1" height="30" alt="" /> Auth0 Demo
             </NavbarBrand>
             <NavbarToggler onClick={this.handleToggle} />

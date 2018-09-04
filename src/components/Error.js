@@ -1,5 +1,4 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -8,11 +7,11 @@ const propTypes = {
 
 function Error({ match }) {
   return (
-    <div style={{ marginTop: '7em' }}>
-      <Header as="h1">Error</Header>
-      <Header as="h3">{match.params.error}</Header>
+    <React.Fragment>
+      <h2>Error</h2>
+      <h3>{match.params.error}</h3>
       <p>{match.params.description}</p>
-    </div>
+    </React.Fragment>
   );
 }
 

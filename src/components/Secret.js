@@ -1,10 +1,9 @@
 import React from 'react';
-import { Header } from 'semantic-ui-react';
 
 function Secret() {
   return (
-    <div style={{ marginTop: '7em' }}>
-      <Header as="h1">Secret</Header>
+    <React.Fragment>
+      <h2>Secret</h2>
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
         ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
@@ -20,7 +19,7 @@ function Secret() {
         vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
         feugiat a.
       </p>
-    </div>
+    </React.Fragment>
   );
 }
 

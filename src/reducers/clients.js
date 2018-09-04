@@ -3,20 +3,12 @@ import _ from 'lodash';
 import { EMPTY_ARRAY, INITIAL_STATE, SORT_DIRECTION } from '../constants';
 
 import {
-  CLEAR_ERROR,
   LOAD_CLIENTS_FAILURE,
   LOAD_CLIENTS_REQUEST,
   LOAD_CLIENTS_SUCCESS,
   RESET_CLIENTS,
   SORT_CLIENTS
 } from '../actions/clients';
-
-function clearError(state, action) {
-  return {
-    ...state,
-    error: undefined
-  };
-}
 
 function loadClientsFailure(state, action) {
   return {
@@ -82,8 +74,6 @@ function sortClients(state, action) {
 
 function clients(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case CLEAR_ERROR:
-      return clearError(state, action);
     case LOAD_CLIENTS_FAILURE:
       return loadClientsFailure(state, action);
     case LOAD_CLIENTS_REQUEST:

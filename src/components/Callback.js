@@ -1,11 +1,12 @@
 import React from 'react';
-import { Dimmer, Loader } from 'semantic-ui-react';
 
 function Callback() {
   return (
-    <Dimmer active inverted>
-      <Loader inverted>Loading...</Loader>
-    </Dimmer>
+    <div className="ui active transition visible inverted dimmer divStyle">
+      <div className="content">
+        <div className="ui inverted text loader">Loading...</div>
+      </div>
+    </div>
   );
 }
 

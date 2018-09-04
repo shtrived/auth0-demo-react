@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container } from 'reactstrap';
 
 import Callback from '../Callback';
 import CallbackRoute from '../../services/CallbackRoute';

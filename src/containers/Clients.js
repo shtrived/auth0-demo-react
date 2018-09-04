@@ -1,15 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { loadClients, resetClients, sortClients } from '../actions/clients';
 
 import ClientTable from '../components/ClientTable';
-import ErrorMessage from '../components/shared/ErrorMessage';
 
 class Clients extends React.Component {
   static propTypes = {
-    error: PropTypes.object,
     items: PropTypes.array.isRequired,
     sortColumn: PropTypes.string.isRequired,
     sortDirection: PropTypes.string.isRequired,
@@ -26,7 +24,6 @@ class Clients extends React.Component {
 
   render() {
     const {
-      error,
       items,
       sortColumn,
       sortDirection,
@@ -35,23 +32,19 @@ class Clients extends React.Component {
       handleSort
     } = this.props;
     return (
-      <div style={{ marginTop: '7em' }}>
-        <ErrorMessage error={error} />
-        <ClientTable
-          items={items}
-          sortColumn={sortColumn}
-          sortDirection={sortDirection}
-          handleClickReset={handleClickReset}
-          handleClickClients={handleClickClients}
-          handleSort={handleSort}
-        />
-      </div>
+      <ClientTable
+        items={items}
+        sortColumn={sortColumn}
+        sortDirection={sortDirection}
+        handleClickReset={handleClickReset}
+        handleClickClients={handleClickClients}
+        handleSort={handleSort}
+      />
     );
   }
 }
 
 const mapStateToProps = state => ({
-  error: state.clients.error,
   items: state.clients.items,
   sortColumn: state.clients.sortColumn,
   sortDirection: state.clients.sortDirection
