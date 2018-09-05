@@ -32,7 +32,7 @@ class ClientTable extends React.Component {
             Reset
           </Button>
         </div>
-        <Table size="sm">
+        <Table>
           <thead>
             <tr>
               <th onClick={() => handleSort('name')}>
