@@ -41,7 +41,7 @@ class PublicNavbar extends React.Component {
               color="link"
               onClick={this.handleSignup}
             >
-              <i className="fas fa-user-plus mr-1" /> Sign up
+              <i className="fas fa-user mr-1" /> Sign up
             </Button>
           </NavItem>
           <NavItem>
