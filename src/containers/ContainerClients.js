@@ -49,8 +49,9 @@ const mapDispatchToProps = dispatch => ({
   handleResetClients: () => {
     dispatch(resetClients());
   },
-  handleSort: clickedColumn => {
-    dispatch(sortClients(clickedColumn));
+  handleSort: e => {
+    const column = e.target.dataset.column;
+    dispatch(sortClients(column));
   }
 });
 

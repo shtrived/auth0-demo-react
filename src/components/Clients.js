@@ -37,8 +37,8 @@ class Clients extends React.Component {
           <thead>
             <tr>
               <th
-                onClick={() => handleSort('name')}
-                scope="col"
+                data-column="name"
+                onClick={handleSort}
                 style={{ cursor: 'pointer', width: '30%' }}
               >
                 Name{' '}
@@ -49,8 +49,8 @@ class Clients extends React.Component {
                 />
               </th>
               <th
-                onClick={() => handleSort('description')}
-                scope="col"
+                data-column="description"
+                onClick={handleSort}
                 style={{ cursor: 'pointer', width: '30%' }}
               >
                 Description{' '}
@@ -61,8 +61,8 @@ class Clients extends React.Component {
                 />
               </th>
               <th
-                onClick={() => handleSort('client_id')}
-                scope="col"
+                data-column="client_id"
+                onClick={handleSort}
                 style={{ cursor: 'pointer', width: '40%' }}
               >
                 Client ID{' '}
