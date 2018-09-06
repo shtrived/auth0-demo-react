@@ -27,11 +27,15 @@ class ContainerClients extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  items: state.clients.items,
-  sortColumn: state.clients.sortColumn,
-  sortDirection: state.clients.sortDirection
-});
+const mapStateToProps = state => {
+  const { clients } = state;
+  const { items, sortColumn, sortDirection } = clients;
+  return {
+    items: items,
+    sortColumn: sortColumn,
+    sortDirection: sortDirection
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   handleClickReset: e => {

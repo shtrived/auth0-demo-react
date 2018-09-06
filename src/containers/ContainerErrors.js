@@ -31,9 +31,13 @@ class ContainerErrors extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  errors: state.elements.errors
-});
+const mapStateToProps = state => {
+  const { elements } = state;
+  const { errors } = elements;
+  return {
+    errors: errors
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   handleClickReset: e => {
