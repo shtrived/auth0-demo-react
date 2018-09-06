@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 
 import { loadClients, resetClients, sortClients } from '../actions/clients';
 
-import ClientTable from '../components/ClientTable';
+import Clients from '../components/Clients';
 
-class Clients extends React.Component {
+class ContainerClients extends React.Component {
   static propTypes = {
+    handleClickClients: PropTypes.func.isRequired,
+    handleClickReset: PropTypes.func.isRequired,
+    handleResetClients: PropTypes.func.isRequired,
+    handleSort: PropTypes.func.isRequired,
     items: PropTypes.array.isRequired,
     sortColumn: PropTypes.string.isRequired,
-    sortDirection: PropTypes.string.isRequired,
-    handleClickReset: PropTypes.func.isRequired,
-    handleClickClients: PropTypes.func.isRequired,
-    handleResetClients: PropTypes.func.isRequired,
-    handleSort: PropTypes.func.isRequired
+    sortDirection: PropTypes.string.isRequired
   };
 
   constructor(props) {
@@ -23,24 +23,7 @@ class Clients extends React.Component {
   }
 
   render() {
-    const {
-      items,
-      sortColumn,
-      sortDirection,
-      handleClickReset,
-      handleClickClients,
-      handleSort
-    } = this.props;
-    return (
-      <ClientTable
-        items={items}
-        sortColumn={sortColumn}
-        sortDirection={sortDirection}
-        handleClickReset={handleClickReset}
-        handleClickClients={handleClickClients}
-        handleSort={handleSort}
-      />
-    );
+    return <Clients {...this.props} />;
   }
 }
 
@@ -70,4 +53,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Clients);
+)(ContainerClients);

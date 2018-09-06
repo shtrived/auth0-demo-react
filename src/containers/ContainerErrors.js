@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { clearErrors } from '../actions/elements';
 
-class Errors extends React.Component {
+class ContainerErrors extends React.Component {
   static propTypes = {
     errors: PropTypes.array.isRequired,
     handleClickReset: PropTypes.func.isRequired
@@ -45,4 +45,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Errors);
+)(ContainerErrors);

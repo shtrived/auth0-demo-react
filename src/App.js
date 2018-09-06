@@ -3,11 +3,11 @@ import { Provider } from 'react-redux';
 import { Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import EmptyLayout from './components/shared/EmptyLayout';
-import PrivateLayout from './components/shared/PrivateLayout';
-import PublicLayout from './components/shared/PublicLayout';
+import LayoutEmpty from './components/shared/LayoutEmpty';
+import LayoutPrivate from './components/shared/LayoutPrivate';
+import LayoutPublic from './components/shared/LayoutPublic';
 
-import PrivateRoute from './services/PrivateRoute';
+import RoutePrivate from './services/RoutePrivate';
 
 import history from './history';
 import './App.css';
@@ -16,9 +16,9 @@ const App = ({ store }) => (
   <Provider store={store}>
     <Router history={history}>
       <Switch>
-        <PrivateRoute path="/app" component={PrivateLayout} />
-        <Route path="/callback" component={EmptyLayout} />
-        <Route component={PublicLayout} />
+        <RoutePrivate path="/app" component={LayoutPrivate} />
+        <Route path="/callback" component={LayoutEmpty} />
+        <Route component={LayoutPublic} />
       </Switch>
     </Router>
   </Provider>

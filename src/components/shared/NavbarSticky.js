@@ -10,12 +10,12 @@ import {
 import PropTypes from 'prop-types';
 
 import ModalSimple from './ModalSimple';
-import PrivateNavbar from './PrivateNavbar';
-import PublicNavbar from './PublicNavbar';
+import NavbarPrivate from './NavbarPrivate';
+import NavbarPublic from './NavbarPublic';
 
 import logo from '../../images/logo.png';
 
-class StickyNavbar extends React.Component {
+class NavbarSticky extends React.Component {
   static propTypes = {
     private: PropTypes.bool
   };
@@ -67,9 +67,9 @@ class StickyNavbar extends React.Component {
             <NavbarToggler onClick={this.handleToggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               {this.props.private ? (
-                <PrivateNavbar onPasswordChange={this.handlePasswordChange} />
+                <NavbarPrivate onPasswordChange={this.handlePasswordChange} />
               ) : (
-                <PublicNavbar />
+                <NavbarPublic />
               )}
             </Collapse>
           </Container>
@@ -79,4 +79,4 @@ class StickyNavbar extends React.Component {
   }
 }
 
-export default StickyNavbar;
+export default NavbarSticky;

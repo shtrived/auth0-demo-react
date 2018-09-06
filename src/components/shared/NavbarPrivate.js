@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 
 import authorizationService from '../../services/AuthorizationService';
 
-class PrivateNavbar extends React.Component {
+class NavbarPrivate extends React.Component {
   static propTypes = {
     onPasswordChange: PropTypes.func
   };
@@ -105,4 +105,4 @@ class PrivateNavbar extends React.Component {
   }
 }
 
-export default PrivateNavbar;
+export default NavbarPrivate;

@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import StickyNavbar from './StickyNavbar';
+import NavbarSticky from './NavbarSticky';
 
 import AboutUs from '../AboutUs';
 import Error from '../Error';
@@ -13,11 +13,11 @@ const propTypes = {
   match: PropTypes.object
 };
 
-function PublicLayout({ match }) {
+function LayoutPublic({ match }) {
   return (
     <React.Fragment>
-      <StickyNavbar />
-      <Container style={{ marginTop: '7em' }}>
+      <NavbarSticky />
+      <Container className="mt-7">
         <Switch>
           <Route path={`${match.path}`} component={Home} exact />
           <Route path={`${match.path}about-us`} component={AboutUs} />
@@ -31,6 +31,6 @@ function PublicLayout({ match }) {
   );
 }
 
-PublicLayout.propTypes = propTypes;
+LayoutPublic.propTypes = propTypes;
 
-export default PublicLayout;
+export default LayoutPublic;

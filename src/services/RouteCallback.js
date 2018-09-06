@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import authorizationService from './AuthorizationService';
 
-class CallbackRoute extends React.Component {
+class RouteCallback extends React.Component {
   static propTypes = {
     component: PropTypes.any
   };
@@ -19,4 +19,4 @@ class CallbackRoute extends React.Component {
   }
 }
 
-export default CallbackRoute;
+export default RouteCallback;

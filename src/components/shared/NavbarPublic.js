@@ -4,7 +4,7 @@ import { Button, Nav, NavItem, NavLink } from 'reactstrap';
 
 import authorizationService from '../../services/AuthorizationService';
 
-class PublicNavbar extends React.Component {
+class NavbarPublic extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
@@ -59,4 +59,4 @@ class PublicNavbar extends React.Component {
   }
 }
 
-export default PublicNavbar;
+export default NavbarPublic;
