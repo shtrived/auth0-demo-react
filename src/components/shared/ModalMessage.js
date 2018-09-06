@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-class ModalMessage extends Component {
+class ModalMessage extends React.Component {
   static propTypes = {
     isOpen: PropTypes.bool,
     onToggle: PropTypes.func
