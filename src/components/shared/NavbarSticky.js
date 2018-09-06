@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import ModalSimple from './ModalSimple';
+import ModalMessage from './ModalMessage';
 import NavbarPrivate from './NavbarPrivate';
 import NavbarPublic from './NavbarPublic';
 
@@ -24,9 +24,9 @@ class NavbarSticky extends React.Component {
     super(props);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleModalToggle = this.handleModalToggle.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
+    this.handleCollapseToggle = this.handleCollapseToggle.bind(this);
     this.state = {
-      isOpen: false,
+      collapseIsOpen: false,
       modalIsOpen: false,
       modalMessage: null
     };
@@ -45,16 +45,16 @@ class NavbarSticky extends React.Component {
     });
   }
 
-  handleToggle() {
+  handleCollapseToggle() {
     this.setState({
-      isOpen: !this.state.isOpen
+      collapseIsOpen: !this.state.collapseIsOpen
     });
   }
 
   render() {
     return (
       <React.Fragment>
-        <ModalSimple
+        <ModalMessage
           isOpen={this.state.modalIsOpen}
           message={this.state.modalMessage}
           onToggle={this.handleModalToggle}
@@ -64,8 +64,8 @@ class NavbarSticky extends React.Component {
             <NavbarBrand tag={Link} to="/">
               <img src={logo} className="mr-1" height="30" alt="" /> Auth0 Demo
             </NavbarBrand>
-            <NavbarToggler onClick={this.handleToggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
+            <NavbarToggler onClick={this.handleCollapseToggle} />
+            <Collapse isOpen={this.state.collapseIsOpen} navbar>
               {this.props.private ? (
                 <NavbarPrivate onPasswordChange={this.handlePasswordChange} />
               ) : (

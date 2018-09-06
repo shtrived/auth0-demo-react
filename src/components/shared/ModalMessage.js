@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import PropTypes from 'prop-types';
 
-class ModalSimple extends Component {
+class ModalMessage extends Component {
   static propTypes = {
     isOpen: PropTypes.bool,
     message: PropTypes.string,
@@ -36,4 +36,4 @@ class ModalSimple extends Component {
   }
 }
 
-export default ModalSimple;
+export default ModalMessage;
