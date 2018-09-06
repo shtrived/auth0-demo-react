@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 class ModalMessage extends Component {
   static propTypes = {
     isOpen: PropTypes.bool,
-    message: PropTypes.string,
     onToggle: PropTypes.func
   };
 
@@ -20,12 +19,13 @@ class ModalMessage extends Component {
   }
 
   render() {
+    const { children, isOpen } = this.props;
     return (
-      <Modal isOpen={this.props.isOpen} toggle={this.handleToggle}>
+      <Modal isOpen={isOpen} toggle={this.handleToggle}>
         <ModalHeader toggle={this.handleToggle}>
           Please review the following message:
         </ModalHeader>
-        <ModalBody>{this.props.message}</ModalBody>
+        <ModalBody>{children}</ModalBody>
         <ModalFooter>
           <Button color="secondary" onClick={this.handleToggle}>
             Close

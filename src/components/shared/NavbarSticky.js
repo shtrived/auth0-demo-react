@@ -56,9 +56,10 @@ class NavbarSticky extends React.Component {
       <React.Fragment>
         <ModalMessage
           isOpen={this.state.modalIsOpen}
-          message={this.state.modalMessage}
           onToggle={this.handleModalToggle}
-        />
+        >
+          {this.state.modalMessage}
+        </ModalMessage>
         <Navbar color="light" expand="md" fixed="top" light>
           <Container>
             <NavbarBrand tag={Link} to="/">
