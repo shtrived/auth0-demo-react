@@ -66,6 +66,11 @@ class NavbarPrivate extends React.Component {
             </NavLink>
           </NavItem>
           <NavItem>
+            <NavLink tag={Link} to="/app/form">
+              Form
+            </NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink tag={Link} to="/app/secret">
               Secret
             </NavLink>

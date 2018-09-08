@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 import RoutePrivate from '../../services/RoutePrivate';
 
 import ContainerClients from '../../containers/ContainerClients';
-import ContainerErros from '../../containers/ContainerErrors';
+import ContainerErrors from '../../containers/ContainerErrors';
+import Form from '../Form';
 import Secret from '../Secret';
 
 import NavbarSticky from './NavbarSticky';
@@ -20,8 +21,9 @@ function LayoutPrivate({ match }) {
     <React.Fragment>
       <NavbarSticky private />
       <Container className="mt-5">
-        <ContainerErros />
+        <ContainerErrors />
         <Route path={`${match.path}`} component={ContainerClients} exact />
+        <RoutePrivate path={`${match.path}/form`} component={Form} />
         <RoutePrivate
           path={`${match.path}/secret`}
           component={Secret}

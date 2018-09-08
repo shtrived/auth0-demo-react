@@ -18,6 +18,7 @@
     "ajv": "^6.5.2",
     "auth0-js": "^9.7.3",
     "axios": "^0.18.0",
+    "formik": "^1.2.0",
     "history": "^4.7.2",
     "jwt-decode": "^2.2.0",
     "prop-types": "^15.6.2",
@@ -29,7 +30,8 @@
     "reactstrap": "^6.4.0",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "yup": "^0.26.3"
   },
   "devDependencies": {
     "eslint-config-prettier": "^3.0.1",

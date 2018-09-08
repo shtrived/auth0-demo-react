@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Collapse,
   Container,
@@ -62,7 +61,7 @@ class NavbarSticky extends React.Component {
         </ModalMessage>
         <Navbar color="light" expand="md" fixed="top" light>
           <Container>
-            <NavbarBrand tag={Link} to="/">
+            <NavbarBrand>
               <img src={logo} className="mr-1" height="30" alt="" /> Auth0 Demo
             </NavbarBrand>
             <NavbarToggler onClick={this.handleCollapseToggle} />
