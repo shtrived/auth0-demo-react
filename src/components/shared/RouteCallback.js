@@ -2,13 +2,13 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import authorizationService from './AuthorizationService';
+import authorizationService from '../../services/AuthorizationService';
+
+const propTypes = {
+  component: PropTypes.any
+};
 
 class RouteCallback extends React.Component {
-  static propTypes = {
-    component: PropTypes.any
-  };
-
   componentDidMount() {
     authorizationService.handleAuthentication();
   }
@@ -18,5 +18,7 @@ class RouteCallback extends React.Component {
     return <Route {...rest} component={Component} />;
   }
 }
+
+RouteCallback.propTypes = propTypes;
 
 export default RouteCallback;

@@ -13,11 +13,11 @@ import PropTypes from 'prop-types';
 
 import authorizationService from '../../services/AuthorizationService';
 
-class NavbarPrivate extends React.Component {
-  static propTypes = {
-    onPasswordChange: PropTypes.func
-  };
+const propTypes = {
+  onPasswordChange: PropTypes.func
+};
 
+class NavbarPrivate extends React.Component {
   constructor(props) {
     super(props);
     this.handleChangePassword = this.handleChangePassword.bind(this);
@@ -62,45 +62,53 @@ class NavbarPrivate extends React.Component {
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavLink tag={Link} to="/app">
-              Clients
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink tag={Link} to="/app/form">
-              Form
+              <i className="fas fa-window-restore fa-fw" /> Applications
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to="/app/secret">
-              Secret
+              <i className="fas fa-user-secret fa-fw" /> Secret
             </NavLink>
           </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
-              {this.state.email}
+              <i className="fas fa-user fa-fw" /> {this.state.email}
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem
                 className="btn btn-link nav-link"
+                tag={Link}
+                to="/app/profile"
+              >
+                <i className="fas fa-user fa-fw" /> Profile
+              </DropdownItem>
+              <DropdownItem
+                className="btn btn-link nav-link"
+                tag={Link}
+                to="/app/password"
+              >
+                <i className="fas fa-lock fa-fw" /> Change password
+              </DropdownItem>
+              <DropdownItem
+                className="btn btn-link nav-link"
                 onClick={this.handleChangePassword}
               >
-                <i className="fas fa-unlock-alt fa-fw mr-1" /> Change password
+                <i className="fas fa-lock fa-fw" /> Change password (email)
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem
                 className="btn btn-link nav-link"
                 onClick={this.handleLogout}
               >
-                <i className="fas fa-sign-out-alt fa-fw mr-1" /> Log out
+                <i className="fas fa-sign-out-alt fa-fw" /> Log out
               </DropdownItem>
               <DropdownItem
                 className="btn btn-link nav-link"
                 onClick={this.handleLogoutFederated}
               >
-                <i className="fas fa-sign-out-alt fa-fw mr-1" /> Log out
-                (federated)
+                <i className="fas fa-sign-out-alt fa-fw" /> Log out (federated)
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -109,5 +117,7 @@ class NavbarPrivate extends React.Component {
     );
   }
 }
+
+NavbarPrivate.propTypes = propTypes;
 
 export default NavbarPrivate;

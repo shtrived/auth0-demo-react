@@ -2,14 +2,14 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import authorizationService from './AuthorizationService';
+import authorizationService from '../../services/AuthorizationService';
+
+const propTypes = {
+  component: PropTypes.any,
+  requireMfa: PropTypes.bool
+};
 
 class RoutePrivate extends React.Component {
-  static propTypes = {
-    component: PropTypes.any,
-    requireMfa: PropTypes.bool
-  };
-
   render() {
     const { component: Component, requireMfa, ...rest } = this.props;
     return (
@@ -30,5 +30,7 @@ class RoutePrivate extends React.Component {
     );
   }
 }
+
+RoutePrivate.propTypes = propTypes;
 
 export default RoutePrivate;

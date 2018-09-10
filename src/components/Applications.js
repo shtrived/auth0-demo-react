@@ -4,16 +4,16 @@ import PropTypes from 'prop-types';
 
 import SortIndicator from './shared/SortIndicator';
 
-class Clients extends React.Component {
-  static propTypes = {
-    handleClickClients: PropTypes.func.isRequired,
-    handleClickReset: PropTypes.func.isRequired,
-    handleSort: PropTypes.func.isRequired,
-    items: PropTypes.array.isRequired,
-    sortColumn: PropTypes.string.isRequired,
-    sortDirection: PropTypes.string.isRequired
-  };
+const propTypes = {
+  handleClickClients: PropTypes.func.isRequired,
+  handleClickReset: PropTypes.func.isRequired,
+  handleSort: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
+  sortColumn: PropTypes.string.isRequired,
+  sortDirection: PropTypes.string.isRequired
+};
 
+class Applications extends React.Component {
   render() {
     const {
       handleClickClients,
@@ -25,9 +25,16 @@ class Clients extends React.Component {
     } = this.props;
     return (
       <React.Fragment>
+        <div className="py-3">
+          <h2>Applications</h2>
+          <p className="lead">
+            Retrieves a list of current applications registered with your
+            tenant.
+          </p>
+        </div>
         <div className="mb-3">
           <Button className="mr-2" color="primary" onClick={handleClickClients}>
-            Get Clients
+            Get Applications
           </Button>
           <Button color="secondary" onClick={handleClickReset}>
             Reset
@@ -81,7 +88,7 @@ class Clients extends React.Component {
                   <div className="media">
                     <span className="badge rounded-circle mr-3">RD</span>
                     <div className="media-body">
-                      <h5 className="mt-0">{item.name}</h5>
+                      <h6 className="mt-1">{item.name}</h6>
                       {item.app_type || 'none'}
                     </div>
                   </div>
@@ -97,4 +104,6 @@ class Clients extends React.Component {
   }
 }
 
-export default Clients;
+Applications.propTypes = propTypes;
+
+export default Applications;

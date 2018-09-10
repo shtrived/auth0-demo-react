@@ -9,6 +9,7 @@ class Random {
     let crypto = window.crypto || window.msCrypto;
     this.crypto = crypto;
   }
+
   getRandomString(length) {
     const result = [];
     const randomValues = new Uint8Array(length);
@@ -17,8 +18,7 @@ class Random {
       return null;
     }
 
-    // get cryptographically strong random values
-    crypto.getRandomValues(randomValues);
+    this.crypto.getRandomValues(randomValues);
 
     for (let a = 0; a < randomValues.length; a++) {
       result.push(this.charset[randomValues[a] % this.charset.length]);
@@ -28,6 +28,27 @@ class Random {
   }
 }
 
-const random = new Random();
+class UUIDv4 {
+  constructor() {
+    let crypto = window.crypto || window.msCrypto;
+    this.crypto = crypto;
+  }
 
-export default random;
+  create() {
+    if (!this.crypto) {
+      return null;
+    }
+
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+      (
+        c ^
+        (this.crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+      ).toString(16)
+    );
+  }
+}
+
+const random = new Random();
+const uuidv4 = new UUIDv4();
+
+export { random, uuidv4 };

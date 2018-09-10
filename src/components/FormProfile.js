@@ -6,7 +6,6 @@ const initialValues = {
   firstName: '',
   lastName: '',
   email: '',
-  password: '',
   address: '',
   address2: '',
   city: '',
@@ -24,9 +23,6 @@ const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email address.')
     .required('Email is required.'),
-  password: Yup.string()
-    .min(6, 'Password must to be greater than 6 characters.')
-    .required('Password is required.'),
   address: Yup.string()
     .max(25, 'Address must be less than 25 characters.')
     .required('Address is required.'),
@@ -34,9 +30,15 @@ const validationSchema = Yup.object().shape({
   city: Yup.string()
     .max(25, 'City must be less than 25 characters.')
     .required('City is required.'),
-  state: Yup.string().required('State is required.'),
+  state: Yup.string()
+    .test(
+      'len',
+      'Must be exactly 2 characters',
+      val => !val || val.length === 2
+    )
+    .required('State is required.'),
   zip: Yup.string()
-    .matches(/^\d{5}$/, 'Invalid zip code.')
+    .matches(/^\d{5}$/, 'Zip code must be 5 digits.')
     .required('Zip is required.')
 });
 
@@ -53,8 +55,8 @@ const render = ({ errors, touched, isSubmitting }) => (
       <div className="form-group col-md-6">
         <label htmlFor="firstName">First name</label>
         <Field
-          type="text"
           name="firstName"
+          type="text"
           className={
             errors.firstName && touched.firstName
               ? 'form-control is-invalid'
@@ -69,8 +71,8 @@ const render = ({ errors, touched, isSubmitting }) => (
       <div className="form-group col-md-6">
         <label htmlFor="lastName">Last name</label>
         <Field
-          type="text"
           name="lastName"
+          type="text"
           className={
             errors.lastName && touched.lastName
               ? 'form-control is-invalid'
@@ -86,8 +88,8 @@ const render = ({ errors, touched, isSubmitting }) => (
     <div className="form-group">
       <label htmlFor="email">Email</label>
       <Field
-        type="text"
         name="email"
+        type="text"
         className={
           errors.email && touched.email
             ? 'form-control is-invalid'
@@ -98,26 +100,10 @@ const render = ({ errors, touched, isSubmitting }) => (
         touched.email && <div className="invalid-feedback">{errors.email}</div>}
     </div>
     <div className="form-group">
-      <label htmlFor="password">Password</label>
-      <Field
-        type="password"
-        name="password"
-        className={
-          errors.password && touched.password
-            ? 'form-control is-invalid'
-            : 'form-control'
-        }
-      />
-      {errors.password &&
-        touched.password && (
-          <div className="invalid-feedback">{errors.password}</div>
-        )}
-    </div>
-    <div className="form-group">
       <label htmlFor="address">Address</label>
       <Field
-        type="text"
         name="address"
+        type="text"
         className={
           errors.address && touched.address
             ? 'form-control is-invalid'
@@ -130,10 +116,10 @@ const render = ({ errors, touched, isSubmitting }) => (
         )}
     </div>
     <div className="form-group">
-      <label htmlFor="address2">Address 2</label>
+      <label htmlFor="address2">Address 2 (Optional)</label>
       <Field
-        type="text"
         name="address2"
+        type="text"
         className={
           errors.address2 && touched.address2
             ? 'form-control is-invalid'
@@ -149,8 +135,8 @@ const render = ({ errors, touched, isSubmitting }) => (
       <div className="form-group col-md-6">
         <label htmlFor="city">City</label>
         <Field
-          type="text"
           name="city"
+          type="text"
           className={
             errors.city && touched.city
               ? 'form-control is-invalid'
@@ -172,9 +158,7 @@ const render = ({ errors, touched, isSubmitting }) => (
           }
         >
           <option value="">Choose...</option>
-          <option value="red">Red</option>
-          <option value="green">Green</option>
-          <option value="blue">Blue</option>
+          <option value="CA">California</option>
         </Field>
         {errors.state &&
           touched.state && (
@@ -184,8 +168,8 @@ const render = ({ errors, touched, isSubmitting }) => (
       <div className="form-group col-md-2">
         <label htmlFor="zip">Zip</label>
         <Field
-          type="text"
           name="zip"
+          type="text"
           className={
             errors.zip && touched.zip
               ? 'form-control is-invalid'
@@ -196,19 +180,20 @@ const render = ({ errors, touched, isSubmitting }) => (
           touched.zip && <div className="invalid-feedback">{errors.zip}</div>}
       </div>
     </div>
-    <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+    <hr className="mb-4" />
+    <button className="btn btn-primary" disabled={isSubmitting} type="submit">
       {isSubmitting ? 'Please wait...' : 'Submit'}
     </button>
   </Form>
 );
 
-const FormChangePassword = () => (
+const FormProfile = () => (
   <Formik
     initialValues={initialValues}
-    validationSchema={validationSchema}
     onSubmit={onSubmit}
     render={render}
+    validationSchema={validationSchema}
   />
 );
 
-export default FormChangePassword;
+export default FormProfile;

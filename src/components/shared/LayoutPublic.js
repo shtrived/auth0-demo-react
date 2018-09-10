@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 
@@ -17,15 +17,14 @@ function LayoutPublic({ match }) {
   return (
     <React.Fragment>
       <NavbarSticky />
-      <Container className="mt-5">
-        <Switch>
-          <Route path={`${match.path}`} component={Home} exact />
-          <Route path={`${match.path}about-us`} component={AboutUs} />
-          <Route
-            path={`${match.path}error/:error/description/:description`}
-            component={Error}
-          />
-        </Switch>
+      <Container className="mt-3">
+        <Route path={`${match.path}`} component={Home} exact />
+        <Route path={`${match.path}about-us`} component={AboutUs} exact />
+        <Route
+          path={`${match.path}error/:error/description/:description`}
+          component={Error}
+          exact
+        />
       </Container>
     </React.Fragment>
   );

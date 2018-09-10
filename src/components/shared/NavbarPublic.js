@@ -41,7 +41,7 @@ class NavbarPublic extends React.Component {
               color="link"
               onClick={this.handleSignup}
             >
-              <i className="fas fa-user mr-1" /> Sign up
+              <i className="fas fa-user fa-fw" /> Sign up
             </Button>
           </NavItem>
           <NavItem>
@@ -50,7 +50,7 @@ class NavbarPublic extends React.Component {
               color="link"
               onClick={this.handleLogin}
             >
-              <i className="fas fa-sign-in-alt mr-1" /> Log in
+              <i className="fas fa-sign-in-alt fa-fw" /> Log in
             </Button>
           </NavItem>
         </Nav>

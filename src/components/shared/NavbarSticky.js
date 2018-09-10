@@ -14,14 +14,14 @@ import NavbarPublic from './NavbarPublic';
 
 import logo from '../../images/logo.png';
 
-class NavbarSticky extends React.Component {
-  static propTypes = {
-    private: PropTypes.bool
-  };
+const propTypes = {
+  private: PropTypes.bool
+};
 
+class NavbarSticky extends React.Component {
   constructor(props) {
     super(props);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleModalToggle = this.handleModalToggle.bind(this);
     this.handleCollapseToggle = this.handleCollapseToggle.bind(this);
     this.state = {
@@ -31,7 +31,7 @@ class NavbarSticky extends React.Component {
     };
   }
 
-  handlePasswordChange(message) {
+  handleChangePassword(message) {
     this.setState({
       modalIsOpen: true,
       modalMessage: message
@@ -67,7 +67,7 @@ class NavbarSticky extends React.Component {
             <NavbarToggler onClick={this.handleCollapseToggle} />
             <Collapse isOpen={this.state.collapseIsOpen} navbar>
               {this.props.private ? (
-                <NavbarPrivate onPasswordChange={this.handlePasswordChange} />
+                <NavbarPrivate onPasswordChange={this.handleChangePassword} />
               ) : (
                 <NavbarPublic />
               )}
@@ -78,5 +78,7 @@ class NavbarSticky extends React.Component {
     );
   }
 }
+
+NavbarSticky.propTypes = propTypes;
 
 export default NavbarSticky;

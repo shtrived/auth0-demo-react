@@ -2,12 +2,12 @@ import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-class ModalMessage extends React.Component {
-  static propTypes = {
-    isOpen: PropTypes.bool,
-    onToggle: PropTypes.func
-  };
+const propTypes = {
+  isOpen: PropTypes.bool,
+  onToggle: PropTypes.func
+};
 
+class ModalMessage extends React.Component {
   constructor(props) {
     super(props);
     this.handleToggle = this.handleToggle.bind(this);
@@ -35,5 +35,7 @@ class ModalMessage extends React.Component {
     );
   }
 }
+
+ModalMessage.propTypes = propTypes;
 
 export default ModalMessage;

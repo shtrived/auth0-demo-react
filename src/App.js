@@ -7,7 +7,7 @@ import LayoutEmpty from './components/shared/LayoutEmpty';
 import LayoutPrivate from './components/shared/LayoutPrivate';
 import LayoutPublic from './components/shared/LayoutPublic';
 
-import RoutePrivate from './services/RoutePrivate';
+import RoutePrivate from './components/shared/RoutePrivate';
 
 import history from './history';
 import './App.css';

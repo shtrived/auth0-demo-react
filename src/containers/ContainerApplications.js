@@ -4,28 +4,30 @@ import PropTypes from 'prop-types';
 
 import { loadClients, resetClients, sortClients } from '../actions/clients';
 
-import Clients from '../components/Clients';
+import Applications from '../components/Applications';
 
-class ContainerClients extends React.Component {
-  static propTypes = {
-    handleClickClients: PropTypes.func.isRequired,
-    handleClickReset: PropTypes.func.isRequired,
-    handleResetClients: PropTypes.func.isRequired,
-    handleSort: PropTypes.func.isRequired,
-    items: PropTypes.array.isRequired,
-    sortColumn: PropTypes.string.isRequired,
-    sortDirection: PropTypes.string.isRequired
-  };
+const propTypes = {
+  handleClickClients: PropTypes.func.isRequired,
+  handleClickReset: PropTypes.func.isRequired,
+  handleResetClients: PropTypes.func.isRequired,
+  handleSort: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
+  sortColumn: PropTypes.string.isRequired,
+  sortDirection: PropTypes.string.isRequired
+};
 
+class ContainerApplications extends React.Component {
   constructor(props) {
     super(props);
     this.props.handleResetClients();
   }
 
   render() {
-    return <Clients {...this.props} />;
+    return <Applications {...this.props} />;
   }
 }
+
+ContainerApplications.propTypes = propTypes;
 
 const mapStateToProps = state => {
   const { clients } = state;
@@ -58,4 +60,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ContainerClients);
+)(ContainerApplications);

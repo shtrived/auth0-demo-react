@@ -3,11 +3,12 @@ import { Route } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-import RoutePrivate from '../../services/RoutePrivate';
+import RoutePrivate from '../../components/shared/RoutePrivate';
 
-import ContainerClients from '../../containers/ContainerClients';
+import ContainerApplications from '../../containers/ContainerApplications';
 import ContainerErrors from '../../containers/ContainerErrors';
-import Form from '../Form';
+import ContainerPassword from '../../containers/ContainerPassword';
+import ContainerProfile from '../../containers/ContainerProfile';
 import Secret from '../Secret';
 
 import NavbarSticky from './NavbarSticky';
@@ -20,10 +21,19 @@ function LayoutPrivate({ match }) {
   return (
     <React.Fragment>
       <NavbarSticky private />
-      <Container className="mt-5">
+      <Container className="mt-3">
         <ContainerErrors />
-        <Route path={`${match.path}`} component={ContainerClients} exact />
-        <RoutePrivate path={`${match.path}/form`} component={Form} />
+        <Route path={`${match.path}`} component={ContainerApplications} exact />
+        <Route
+          path={`${match.path}/password`}
+          component={ContainerPassword}
+          exact
+        />
+        <Route
+          path={`${match.path}/profile`}
+          component={ContainerProfile}
+          exact
+        />
         <RoutePrivate
           path={`${match.path}/secret`}
           component={Secret}
@@ -31,6 +41,13 @@ function LayoutPrivate({ match }) {
           exact
         />
       </Container>
+      <footer className="footer">
+        <Container>
+          <span className="text-muted">
+            &copy; Let's Do Auth demonstration website.
+          </span>
+        </Container>
+      </footer>{' '}
     </React.Fragment>
   );
 }

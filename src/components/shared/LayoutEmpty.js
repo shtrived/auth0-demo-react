@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from 'reactstrap';
 
 import Callback from '../Callback';
-import RouteCallback from '../../services/RouteCallback';
+import RouteCallback from '../../components/shared/RouteCallback';
 
 function LayoutEmpty(props) {
   return (

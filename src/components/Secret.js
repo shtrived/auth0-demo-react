@@ -3,7 +3,13 @@ import React from 'react';
 function Secret() {
   return (
     <React.Fragment>
-      <h2>Secret</h2>
+      <div className="py-3">
+        <h2>Secret</h2>
+        <p className="lead">
+          This resource is only accessible by providing a second authentication
+          factor.
+        </p>
+      </div>
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
         ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
