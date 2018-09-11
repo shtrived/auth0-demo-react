@@ -13,7 +13,11 @@ class Password extends React.Component {
           <h2>Password</h2>
           <p className="lead">Update password.</p>
         </div>
-        <FormPassword />
+        <div className="row">
+          <div className="col-md-8">
+            <FormPassword />
+          </div>
+        </div>
       </React.Fragment>
     );
   }

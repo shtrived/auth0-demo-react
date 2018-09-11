@@ -13,7 +13,11 @@ class Profile extends React.Component {
           <h2>Profile</h2>
           <p className="lead">Manage profile properties.</p>
         </div>
-        <FormProfile />
+        <div className="row">
+          <div className="col-md-8">
+            <FormProfile />
+          </div>
+        </div>
       </React.Fragment>
     );
   }
