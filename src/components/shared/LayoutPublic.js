@@ -17,7 +17,7 @@ function LayoutPublic({ match }) {
   return (
     <React.Fragment>
       <NavbarSticky />
-      <Container className="mt-3">
+      <Container className="mt-5">
         <Route path={`${match.path}`} component={Home} exact />
         <Route path={`${match.path}about-us`} component={AboutUs} exact />
         <Route

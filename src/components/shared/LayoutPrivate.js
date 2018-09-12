@@ -21,7 +21,7 @@ function LayoutPrivate({ match }) {
   return (
     <React.Fragment>
       <NavbarSticky private />
-      <Container className="mt-3">
+      <Container className="mt-5">
         <ContainerErrors />
         <Route path={`${match.path}`} component={ContainerApplications} exact />
         <Route
