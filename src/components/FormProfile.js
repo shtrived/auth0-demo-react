@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Yup from 'yup';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 const initialValues = {
   firstName: '',
@@ -10,7 +10,7 @@ const initialValues = {
   address2: '',
   city: '',
   state: '',
-  zip: ''
+  zipCode: ''
 };
 
 const validationSchema = Yup.object().shape({
@@ -37,9 +37,9 @@ const validationSchema = Yup.object().shape({
       val => !val || val.length === 2
     )
     .required('State is required.'),
-  zip: Yup.string()
+  zipCode: Yup.string()
     .matches(/^\d{5}$/, 'Zip code must be 5 digits.')
-    .required('Zip is required.')
+    .required('Zip code is required.')
 });
 
 const onSubmit = (values, actions) => {
@@ -63,10 +63,11 @@ const render = ({ errors, touched, isSubmitting }) => (
               : 'form-control'
           }
         />
-        {errors.firstName &&
-          touched.firstName && (
-            <div className="invalid-feedback">{errors.firstName}</div>
-          )}
+        <ErrorMessage
+          className="invalid-feedback"
+          component="div"
+          name="firstName"
+        />
       </div>
       <div className="form-group col-md-6">
         <label htmlFor="lastName">Last name</label>
@@ -79,10 +80,11 @@ const render = ({ errors, touched, isSubmitting }) => (
               : 'form-control'
           }
         />
-        {errors.lastName &&
-          touched.lastName && (
-            <div className="invalid-feedback">{errors.lastName}</div>
-          )}
+        <ErrorMessage
+          className="invalid-feedback"
+          component="div"
+          name="lastName"
+        />
       </div>
     </div>
     <div className="form-group">
@@ -96,8 +98,7 @@ const render = ({ errors, touched, isSubmitting }) => (
             : 'form-control'
         }
       />
-      {errors.email &&
-        touched.email && <div className="invalid-feedback">{errors.email}</div>}
+      <ErrorMessage className="invalid-feedback" component="div" name="email" />
     </div>
     <div className="form-group">
       <label htmlFor="address">Address</label>
@@ -110,10 +111,11 @@ const render = ({ errors, touched, isSubmitting }) => (
             : 'form-control'
         }
       />
-      {errors.address &&
-        touched.address && (
-          <div className="invalid-feedback">{errors.address}</div>
-        )}
+      <ErrorMessage
+        className="invalid-feedback"
+        component="div"
+        name="address"
+      />
     </div>
     <div className="form-group">
       <label htmlFor="address2">Address 2 (Optional)</label>
@@ -126,10 +128,11 @@ const render = ({ errors, touched, isSubmitting }) => (
             : 'form-control'
         }
       />
-      {errors.address2 &&
-        touched.address2 && (
-          <div className="invalid-feedback">{errors.address2}</div>
-        )}
+      <ErrorMessage
+        className="invalid-feedback"
+        component="div"
+        name="address2"
+      />
     </div>
     <div className="form-row">
       <div className="form-group col-md-6">
@@ -143,8 +146,11 @@ const render = ({ errors, touched, isSubmitting }) => (
               : 'form-control'
           }
         />
-        {errors.city &&
-          touched.city && <div className="invalid-feedback">{errors.city}</div>}
+        <ErrorMessage
+          className="invalid-feedback"
+          component="div"
+          name="city"
+        />
       </div>
       <div className="form-group col-md-4">
         <label htmlFor="state">State</label>
@@ -160,24 +166,28 @@ const render = ({ errors, touched, isSubmitting }) => (
           <option value="">Choose...</option>
           <option value="CA">California</option>
         </Field>
-        {errors.state &&
-          touched.state && (
-            <div className="invalid-feedback">{errors.state}</div>
-          )}
+        <ErrorMessage
+          className="invalid-feedback"
+          component="div"
+          name="state"
+        />
       </div>
       <div className="form-group col-md-2">
         <label htmlFor="zip">Zip</label>
         <Field
-          name="zip"
+          name="zipCode"
           type="text"
           className={
-            errors.zip && touched.zip
+            errors.zipCode && touched.zipCode
               ? 'form-control is-invalid'
               : 'form-control'
           }
         />
-        {errors.zip &&
-          touched.zip && <div className="invalid-feedback">{errors.zip}</div>}
+        <ErrorMessage
+          className="invalid-feedback"
+          component="div"
+          name="zipCode"
+        />
       </div>
     </div>
     <hr className="mb-4" />

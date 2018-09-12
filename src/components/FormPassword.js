@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Yup from 'yup';
-import { Field, Form, Formik } from 'formik';
+import { ErrorMessage, Field, Form, Formik } from 'formik';
 
 const initialValues = {
   password: '',
@@ -36,10 +36,11 @@ const render = ({ errors, touched, isSubmitting }) => (
             : 'form-control'
         }
       />
-      {errors.password &&
-        touched.password && (
-          <div className="invalid-feedback">{errors.password}</div>
-        )}
+      <ErrorMessage
+        className="invalid-feedback"
+        component="div"
+        name="password"
+      />
     </div>
     <div className="form-group">
       <label htmlFor="passwordConfirm">Confirm password</label>
@@ -52,10 +53,11 @@ const render = ({ errors, touched, isSubmitting }) => (
             : 'form-control'
         }
       />
-      {errors.passwordConfirm &&
-        touched.passwordConfirm && (
-          <div className="invalid-feedback">{errors.passwordConfirm}</div>
-        )}
+      <ErrorMessage
+        className="invalid-feedback"
+        component="div"
+        name="passwordConfirm"
+      />
     </div>
     <hr className="mb-4" />
     <button className="btn btn-primary" disabled={isSubmitting} type="submit">
