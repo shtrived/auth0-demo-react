@@ -35,22 +35,20 @@ class NavbarPublic extends React.Component {
           </NavItem>
         </Nav>
         <Nav className="ml-auto" navbar>
-          <NavItem>
+          <NavItem className="mr-sm-2 my-2 my-sm-0">
             <Button
-              className="nav-link"
-              color="link"
+              className="btn btn-outline-primary"
               onClick={this.handleSignup}
             >
-              <i className="fas fa-user fa-fw" /> Sign up
+              Sign up
             </Button>
           </NavItem>
-          <NavItem>
+          <NavItem className="my-2 my-sm-0">
             <Button
-              className="nav-link"
-              color="link"
+              className="btn btn-outline-secondary"
               onClick={this.handleLogin}
             >
-              <i className="fas fa-sign-in-alt fa-fw" /> Log in
+              Log in
             </Button>
           </NavItem>
         </Nav>

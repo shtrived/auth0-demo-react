@@ -62,7 +62,13 @@ class NavbarSticky extends React.Component {
         <Navbar color="light" expand="md" fixed="top" light>
           <Container>
             <NavbarBrand>
-              <img src={logo} className="mr-1" height="30" alt="" /> Auth0 Demo
+              <img
+                className="align-top d-inline-block mr-2"
+                height="30"
+                src={logo}
+                alt=""
+              />
+              Auth0 Demo
             </NavbarBrand>
             <NavbarToggler onClick={this.handleCollapseToggle} />
             <Collapse isOpen={this.state.collapseIsOpen} navbar>
