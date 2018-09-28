@@ -68,7 +68,7 @@ class NavbarSticky extends React.Component {
                 src={logo}
                 alt=""
               />
-              Auth0 Demo
+              Auth0 Demo SPA
             </NavbarBrand>
             <NavbarToggler onClick={this.handleCollapseToggle} />
             <Collapse isOpen={this.state.collapseIsOpen} navbar>
