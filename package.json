@@ -12,7 +12,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "format": "prettier --write './src/**/*.{js,jsx}'"
+    "format": "prettier --write './src/**/*.{js,jsx}'",
+    "debug": "HTTPS=true npm start"
   },
   "dependencies": {
     "ajv": "^6.5.4",
