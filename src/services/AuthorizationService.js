@@ -77,7 +77,9 @@ class AuthorizationService {
   }
 
   login() {
-    this.webAuth.authorize();
+    this.webAuth.authorize({
+      //connection: 'dahbura-adfs-dc-saml'
+    });
   }
 
   logout() {
