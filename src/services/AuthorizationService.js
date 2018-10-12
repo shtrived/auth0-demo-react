@@ -61,7 +61,8 @@ class AuthorizationService {
         return;
       }
       this._setSession(result);
-      history.replace(returnTo || '/app');
+      history.replace(returnTo);
+      console.log('Successfully handled authentication.');
     });
   }
 
@@ -76,9 +77,22 @@ class AuthorizationService {
     return new Date().getTime() < expiresAt;
   }
 
-  login() {
-    this.webAuth.authorize({
-      //connection: 'dahbura-adfs-dc-saml'
+  login(returnTo) {
+    this.webAuth.checkSession({}, (err, result) => {
+      if (err) {
+        const error = err.error;
+        const description = err.error_description;
+        console.log(
+          `Couldn't log in via check session, (${error}: ${description}).`
+        );
+        this.webAuth.authorize({
+          //connection: 'dahbura-adfs-dc-saml'
+        });
+        return;
+      }
+      this._setSession(result);
+      history.replace(returnTo || '/app');
+      console.log('Successfully logged in via check session.');
     });
   }
 
@@ -105,7 +119,7 @@ class AuthorizationService {
   }
 
   stepUpAuthentication(returnTo) {
-    localStorage.setItem(LOCAL_STORAGE.returnTo, returnTo);
+    this._setReturnTo(returnTo);
     this.webAuth.authorize({
       acr_values: 'http://schemas.openid.net/pape/policies/2007/06/multi-factor'
     });
@@ -134,7 +148,7 @@ class AuthorizationService {
   }
 
   _getReturnTo() {
-    const returnTo = localStorage.getItem(LOCAL_STORAGE.returnTo);
+    const returnTo = localStorage.getItem(LOCAL_STORAGE.returnTo) || '/app';
     localStorage.removeItem(LOCAL_STORAGE.returnTo);
     return returnTo;
   }
@@ -158,11 +172,11 @@ class AuthorizationService {
       if (err) {
         const error = err.error;
         const description = err.error_description;
-        console.log(`Couldn't get a new token, (${error}: ${description}).`);
+        console.log(`Couldn't renew token, (${error}: ${description}).`);
         return;
       }
       this._setSession(result);
-      console.log('Successfully renewed auth!');
+      console.log('Successfully renewed token.');
     });
   }
 
@@ -174,6 +188,10 @@ class AuthorizationService {
         this._renewToken();
       }, delay);
     }
+  }
+
+  _setReturnTo(returnTo) {
+    localStorage.setItem(LOCAL_STORAGE.returnTo, returnTo || '/app');
   }
 
   _setSession(authResult) {
