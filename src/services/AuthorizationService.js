@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 
 import history from '../history';
 
-import { AUTH_CONFIG, CLAIMS, LOCAL_STORAGE } from '../constants';
+import { CLAIMS, LOCAL_STORAGE } from '../constants';
 
 class AuthorizationService {
   constructor() {
@@ -11,12 +11,12 @@ class AuthorizationService {
     this.keyLength = 32;
     this.tokenRenewalTimeoutId = 0;
     this.webAuth = new auth0.WebAuth({
-      domain: AUTH_CONFIG.domainAlias,
-      clientID: AUTH_CONFIG.clientId,
-      redirectUri: AUTH_CONFIG.callbackUrl,
+      domain: process.env.REACT_APP_AUTH0_DOMAIN_ALIAS,
+      clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+      redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
       responseType: 'token id_token',
       scope: 'openid profile email',
-      audience: AUTH_CONFIG.apiAudience
+      audience: process.env.REACT_APP_AUTH0_API_AUDIENCE
     });
   }
 
@@ -105,9 +105,11 @@ class AuthorizationService {
   logoutFederated() {
     this._clearSession();
     clearTimeout(this.tokenRenewalTimeoutId);
-    const domain = AUTH_CONFIG.domainAlias;
-    const clientID = AUTH_CONFIG.clientId;
-    const returnToUrl = encodeURIComponent(AUTH_CONFIG.logoutUrl);
+    const domain = process.env.REACT_APP_AUTH0_DOMAIN_ALIAS;
+    const clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
+    const returnToUrl = encodeURIComponent(
+      process.env.REACT_APP_AUTH0_LOGOUT_URL
+    );
     const url = `https://${domain}/v2/logout?federated&client_id=${clientID}&returnTo=${returnToUrl}`;
     window.location.href = url;
   }

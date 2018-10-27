@@ -1,15 +1,5 @@
 const ns = 'https://letsdoauth.com';
 
-export const AUTH_CONFIG = {
-  domain: 'rudydahbura.auth0.com',
-  domainAlias: 'idp.letsdoauth.com',
-  clientId: 'lsHbUXlIE1d8SLWgOZBCfBL8SbmRCRc-',
-  callbackUrl: 'https://localhost:3000/callback',
-  logoutUrl: 'https://localhost:3000',
-  apiAudience: 'https://api.letsdoauth.com',
-  apiUrl: 'http://localhost:3080'
-};
-
 export const CLAIMS = {
   connection: `${ns}/connection`,
   connectionStrategy: `${ns}/connectionStrategy`,

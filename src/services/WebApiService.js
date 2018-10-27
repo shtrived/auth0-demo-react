@@ -3,12 +3,10 @@ import axios from 'axios';
 
 import authorizationService from './AuthorizationService';
 
-import { AUTH_CONFIG } from '../constants';
-
 class WebApiService {
   constructor() {
     this.axios = axios.create({
-      baseURL: AUTH_CONFIG.apiUrl,
+      baseURL: process.env.REACT_APP_AUTH0_API_ENDPOINT,
       headers: {
         Authorization: 'Bearer ' + authorizationService.getAccessToken()
       }
