@@ -183,8 +183,9 @@ class AuthorizationService {
   }
 
   _scheduleRenewal() {
+    const leeway = 5 * 60 * 1000; // renew token 5 minutes prior to expiration
     const expiresAt = JSON.parse(localStorage.getItem(LOCAL_STORAGE.expiresAt));
-    const delay = expiresAt - Date.now();
+    const delay = expiresAt - Date.now() - leeway;
     if (delay > 0) {
       this.tokenRenewalTimeoutId = setTimeout(() => {
         this._renewToken();
