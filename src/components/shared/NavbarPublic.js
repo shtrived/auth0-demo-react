@@ -4,6 +4,8 @@ import { Button, Nav, NavItem, NavLink } from 'reactstrap';
 
 import authorizationService from '../../services/AuthorizationService';
 
+import logoSalesforce from '../../images/logo-salesforce.png';
+
 class NavbarPublic extends React.Component {
   constructor(props) {
     super(props);
@@ -31,6 +33,17 @@ class NavbarPublic extends React.Component {
           <NavItem>
             <NavLink tag={Link} to="/about-us">
               About Us
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="https://rudydahbura-dev-ed.my.salesforce.com">
+              <img
+                className="d-inline-block mr-1"
+                height="30"
+                src={logoSalesforce}
+                alt=""
+              />
+              Salesforce
             </NavLink>
           </NavItem>
         </Nav>
