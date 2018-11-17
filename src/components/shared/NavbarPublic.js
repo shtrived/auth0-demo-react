@@ -38,8 +38,8 @@ class NavbarPublic extends React.Component {
           <NavItem>
             <NavLink href="https://rudydahbura-dev-ed.my.salesforce.com">
               <img
-                className="d-inline-block mr-1"
-                height="30"
+                className="align-top d-inline-block mr-1"
+                height="24"
                 src={logoSalesforce}
                 alt=""
               />
