@@ -22,7 +22,7 @@ class NavbarPrivate extends React.Component {
     super(props);
     this.handleChangePassword = this.handleChangePassword.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleLogoutFederated = this.handleLogoutFederated.bind(this);
+    this.handleLogoutSso = this.handleLogoutSso.bind(this);
     this.state = {
       email: '...'
     };
@@ -52,8 +52,8 @@ class NavbarPrivate extends React.Component {
     authorizationService.logout();
   }
 
-  handleLogoutFederated() {
-    authorizationService.logoutFederated();
+  handleLogoutSso() {
+    authorizationService.logoutSso();
   }
 
   render() {
@@ -106,9 +106,10 @@ class NavbarPrivate extends React.Component {
               </DropdownItem>
               <DropdownItem
                 className="btn btn-link nav-link"
-                onClick={this.handleLogoutFederated}
+                onClick={this.handleLogoutSso}
               >
-                <i className="fas fa-sign-out-alt fa-fw" /> Log out (federated)
+                <i className="fas fa-sign-out-alt fa-fw" /> Log out (SSO
+                session)
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>

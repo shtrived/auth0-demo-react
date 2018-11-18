@@ -102,7 +102,7 @@ class AuthorizationService {
     history.replace('/');
   }
 
-  logoutFederated() {
+  logoutSso() {
     this._clearSession();
     clearTimeout(this.tokenRenewalTimeoutId);
     const domain = process.env.REACT_APP_AUTH0_DOMAIN_ALIAS;
@@ -110,7 +110,7 @@ class AuthorizationService {
     const returnToUrl = encodeURIComponent(
       process.env.REACT_APP_AUTH0_LOGOUT_URL
     );
-    const url = `https://${domain}/v2/logout?federated&client_id=${clientID}&returnTo=${returnToUrl}`;
+    const url = `https://${domain}/v2/logout?returnTo=${returnToUrl}&client_id=${clientID}`;
     window.location.href = url;
   }
 
