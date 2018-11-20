@@ -96,28 +96,31 @@ class AuthorizationService {
     });
   }
 
-  logout() {
+  logout(sso, federated) {
     this._clearSession();
     clearTimeout(this.tokenRenewalTimeoutId);
-    history.replace('/');
-  }
 
-  logoutSso() {
-    this._clearSession();
-    clearTimeout(this.tokenRenewalTimeoutId);
+    if (!sso) {
+      history.replace('/');
+      return;
+    }
+
     const domain = process.env.REACT_APP_AUTH0_DOMAIN_ALIAS;
     const clientID = process.env.REACT_APP_AUTH0_CLIENT_ID;
     const returnToUrl = encodeURIComponent(
       process.env.REACT_APP_AUTH0_LOGOUT_URL
     );
-    const url = `https://${domain}/v2/logout?returnTo=${returnToUrl}&client_id=${clientID}`;
-    window.location.href = url;
-  }
 
-  signup() {
-    this.webAuth.authorize({
-      mode: 'signUp'
-    });
+    let qs = [];
+    qs.push(`returnTo=${returnToUrl}`);
+    qs.push(`client_id=${clientID}`);
+    if (federated) {
+      qs.push('federated');
+    }
+
+    const url = `https://${domain}/v2/logout?` + qs.join('&');
+
+    window.location.href = url;
   }
 
   stepUpAuthentication(returnTo) {
