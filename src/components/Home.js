@@ -1,25 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import pic from '../images/wireless.jpg';
 
 function Home() {
   return (
-    <React.Fragment>
-      <h2>Home</h2>
-      <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-        ultricies nec, pellentesque eu, pretium quis, sem.
-      </p>
-      <p>
-        Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
-        aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
-        a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-        Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean
-        vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat
-        vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis,
-        feugiat a.
-      </p>
-    </React.Fragment>
+    <div className="row justify-content-lg-between align-items-lg-center py-5">
+      <div className="col-lg-6">
+        <h1 className="display-4">Never Compromise on Identity</h1>
+        <p className="lead mb-4">
+          We provide a universal authentication & authorization platform for
+          web, mobile and legacy applications..
+        </p>
+        <Link className="btn btn-pill btn-primary" role="button" to="/app">
+          Learn more
+        </Link>
+      </div>
+      <div className="col-lg-6">
+        <img
+          className="d-none d-lg-block img-fluid img-thumbnail"
+          alt="Workspace"
+          src={pic}
+        />
+      </div>
+    </div>
   );
 }
 
