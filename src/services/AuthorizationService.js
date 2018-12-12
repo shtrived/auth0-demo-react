@@ -123,6 +123,12 @@ class AuthorizationService {
     window.location.href = url;
   }
 
+  signUp() {
+    this.webAuth.authorize({
+      mode: 'signUp'
+    });
+  }
+
   stepUpAuthentication(returnTo) {
     this._setReturnTo(returnTo);
     this.webAuth.authorize({

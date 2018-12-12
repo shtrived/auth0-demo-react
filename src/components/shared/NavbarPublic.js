@@ -10,15 +10,15 @@ class NavbarPublic extends React.Component {
   constructor(props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
-    this.handleSignup = this.handleSignup.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
   handleLogin() {
     authorizationService.login();
   }
 
-  handleSignup() {
-    authorizationService.signup();
+  handleSignUp() {
+    authorizationService.signUp();
   }
 
   render() {
@@ -51,7 +51,7 @@ class NavbarPublic extends React.Component {
           <NavItem className="mr-sm-2 my-2 my-sm-0">
             <Button
               className="btn btn-outline-primary"
-              onClick={this.handleSignup}
+              onClick={this.handleSignUp}
             >
               Sign up
             </Button>
